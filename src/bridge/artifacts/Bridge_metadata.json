@@ -1,0 +1,867 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "stored",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "received",
+						"type": "uint256"
+					}
+				],
+				"name": "BadSequencerMessageNumber",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "outbox",
+						"type": "address"
+					}
+				],
+				"name": "InvalidOutboxSet",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "NotContract",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "NotDelayedInbox",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "NotOutbox",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "rollup",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "NotRollupOrOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "NotSequencerInbox",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "outbox",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "BridgeCallTriggered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "inbox",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "enabled",
+						"type": "bool"
+					}
+				],
+				"name": "InboxToggle",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "messageIndex",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "beforeInboxAcc",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "inbox",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "kind",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "messageDataHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "baseFeeL1",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint64",
+						"name": "timestamp",
+						"type": "uint64"
+					}
+				],
+				"name": "MessageDelivered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "outbox",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "enabled",
+						"type": "bool"
+					}
+				],
+				"name": "OutboxToggle",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "rollup",
+						"type": "address"
+					}
+				],
+				"name": "RollupUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "newSequencerInbox",
+						"type": "address"
+					}
+				],
+				"name": "SequencerInboxUpdated",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "acceptFundsFromOldBridge",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "activeOutbox",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "allowedDelayedInboxList",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "inbox",
+						"type": "address"
+					}
+				],
+				"name": "allowedDelayedInboxes",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "allowedOutboxList",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "outbox",
+						"type": "address"
+					}
+				],
+				"name": "allowedOutboxes",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "delayedInboxAccs",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "delayedMessageCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "kind",
+						"type": "uint8"
+					},
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "messageDataHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "enqueueDelayedMessage",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "dataHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "afterDelayedMessagesRead",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "prevMessageCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "newMessageCount",
+						"type": "uint256"
+					}
+				],
+				"name": "enqueueSequencerMessage",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "seqMessageIndex",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "beforeAcc",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "delayedAcc",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "acc",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "executeCall",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					},
+					{
+						"internalType": "bytes",
+						"name": "returnData",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IOwnable",
+						"name": "rollup_",
+						"type": "address"
+					}
+				],
+				"name": "initialize",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rollup",
+				"outputs": [
+					{
+						"internalType": "contract IOwnable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "sequencerInbox",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "sequencerInboxAccs",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "sequencerMessageCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "sequencerReportedSubMessageCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "inbox",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "enabled",
+						"type": "bool"
+					}
+				],
+				"name": "setDelayedInbox",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "outbox",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "enabled",
+						"type": "bool"
+					}
+				],
+				"name": "setOutbox",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_sequencerInbox",
+						"type": "address"
+					}
+				],
+				"name": "setSequencerInbox",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newMsgCount",
+						"type": "uint256"
+					}
+				],
+				"name": "setSequencerReportedSubMessageCount",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "messageDataHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "submitBatchSpendingReport",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IOwnable",
+						"name": "_rollup",
+						"type": "address"
+					}
+				],
+				"name": "updateRollupAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"BadSequencerMessageNumber(uint256,uint256)": [
+					{
+						"details": "The sequence message number provided to this message was inconsistent with the previous one"
+					}
+				],
+				"InvalidOutboxSet(address)": [
+					{
+						"details": "the provided outbox address isn't valid",
+						"params": {
+							"outbox": "address of outbox being set"
+						}
+					}
+				],
+				"NotContract(address)": [
+					{
+						"details": "The provided is not a contract and was expected to be",
+						"params": {
+							"addr": "The adddress in question"
+						}
+					}
+				],
+				"NotDelayedInbox(address)": [
+					{
+						"details": "Thrown when an un-authorized address tries to access an only-inbox function",
+						"params": {
+							"sender": "The un-authorized sender"
+						}
+					}
+				],
+				"NotOutbox(address)": [
+					{
+						"details": "Thrown when an un-authorized address tries to access an only-outbox function",
+						"params": {
+							"sender": "The un-authorized sender"
+						}
+					}
+				],
+				"NotRollupOrOwner(address,address,address)": [
+					{
+						"details": "Thrown when an un-authorized address tries to access an admin function",
+						"params": {
+							"owner": "The rollup's owner, which would be authorized",
+							"rollup": "The rollup, which would be authorized",
+							"sender": "The un-authorized sender"
+						}
+					}
+				],
+				"NotSequencerInbox(address)": [
+					{
+						"details": "Thrown when an un-authorized address tries to access an only-sequencer-inbox function",
+						"params": {
+							"sender": "The un-authorized sender"
+						}
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"acceptFundsFromOldBridge()": {
+					"details": "For the classic -> nitro migration. TODO: remove post-migration."
+				},
+				"activeOutbox()": {
+					"details": "returns the address of current active Outbox, or zero if no outbox is active"
+				},
+				"enqueueDelayedMessage(uint8,address,bytes32)": {
+					"details": "Enqueue a message in the delayed inbox accumulator.      These messages are later sequenced in the SequencerInbox, either      by the sequencer as part of a normal batch, or by force inclusion."
+				},
+				"submitBatchSpendingReport(address,bytes32)": {
+					"details": "Allows the sequencer inbox to submit a delayed message of the batchPostingReport type      This is done through a separate function entrypoint instead of allowing the sequencer inbox      to call `enqueueDelayedMessage` to avoid the gas overhead of an extra SLOAD in either      every delayed inbox or every sequencer inbox call."
+				}
+			},
+			"title": "Staging ground for incoming and outgoing messages",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"updateRollupAddress(address)": {
+					"notice": "Allows the rollup owner to set another rollup address"
+				}
+			},
+			"notice": "It is also the ETH escrow for value sent with these messages.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/bridge/Bridge.sol": "Bridge"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
+			"keccak256": "0x372b0bc04e3b4c074559bbbfb1317afddb56de5504158ca25a7f9cd403980445",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://88b812365459a042c2aab5c689ff723098e0e19cb372718d3dd028b3c406e4f6",
+				"dweb:/ipfs/QmTsLrMYzPjnB85pyAy85NNcBg64RPVueJARzwNg9xMyR1"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol": {
+			"keccak256": "0x55cf2bd9fc76704ddcdc19834cd288b7de00fc0f298a40ea16a954ae8991db2d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://37e4df53c8d2e3c1062c1c7b2c17366db7de03bfd2559d340ca95c588aa49c2f",
+				"dweb:/ipfs/QmQ9vsG3o4wED3FRogiSUhdzJvZSjjYFtydzXvFEJtgZk4"
+			]
+		},
+		"src/bridge/AbsBridge.sol": {
+			"keccak256": "0x78beb9ff291ccb54d4b3ef61f5b02a2125fac7e052970b94376d350767dfee41",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://6c41d303c7571905142ae6d9258cb50ab72101059928367cb5d9c6857e06dd42",
+				"dweb:/ipfs/QmTMRedPFdM6LFRzyjjAHp7ZjDD7nVkan1S2Jeitg42ATG"
+			]
+		},
+		"src/bridge/Bridge.sol": {
+			"keccak256": "0x4b2a70c6eefd62e611eb7172887a98164e2f0d53259bd5aa30177404c9861031",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://59794063b6744971e6a76c44446cfcdea2696e5c90a403b39bb4542b0a9464d2",
+				"dweb:/ipfs/QmUHwSNAnX192keJmsWEybr2Quop2D2oA5qkP6z7mVG43p"
+			]
+		},
+		"src/bridge/IBridge.sol": {
+			"keccak256": "0xeba1e59fa4dd56d0d2cd775ab726d08e470bf3056f5473ce62b98499e55ff7bd",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://fca93cb8bf8369a86d299b263081d1789fd5f0b2579cd229f26e007b8f269d5f",
+				"dweb:/ipfs/QmVwEQLsy7sSGwJ7MEWeHPwSunKu1Hr5YozzNy6CW1prmH"
+			]
+		},
+		"src/bridge/IEthBridge.sol": {
+			"keccak256": "0xfcfd516c84cd002aa9675daf2f4ae30679e23e908aed493b0122311edf8e2ab1",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://a4adc03266904008f673b734b536e1324ab14e579e63ec9c51f2d5f7eaab9f9c",
+				"dweb:/ipfs/QmXdTNmMCrzmgM35jctNcKg771fNRLc4gAbvXmLMqmehqL"
+			]
+		},
+		"src/bridge/IOwnable.sol": {
+			"keccak256": "0x0ce0ccc2cd25968ab37aef146be9c9a615c3f2ad239fa759d1745190666729fd",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://6516e1a94fdc9530b90ceb408e3083ecc7e844afd4fc34a7ccab89a191c3b88f",
+				"dweb:/ipfs/QmZ4UwQe1pgTJxx1XqzcAKTgu9Wo6qZA5WSCPHygFJSdi8"
+			]
+		},
+		"src/bridge/Messages.sol": {
+			"keccak256": "0xeaa9e6216205b3fe02a6ad281d78e2cb26af9bb441d83d6a35579b65eba8e3c1",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://a8c174189d46ff9488f0911369fb16ba47cd0aecbdbc255cb7ca41b23925c42e",
+				"dweb:/ipfs/QmS1wtMvYe84Z3tKPRW16CpzXLyV7A8oukGj4LoQuTzNNs"
+			]
+		},
+		"src/libraries/DelegateCallAware.sol": {
+			"keccak256": "0xd87b87769f0561e21ff11b0ec95f5e98dc14b418e6c2f84aaeaef219b18e4001",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://1d8a77591443fbdddaab5d4a3377f777d3fe0b9407259a6a3047680ab972174c",
+				"dweb:/ipfs/QmYE2hrmJizzxJptBcUFXxxijS8YMVZag1EfAq19Qy1Nmd"
+			]
+		},
+		"src/libraries/Error.sol": {
+			"keccak256": "0x0585f0f907e6705ad477b6699e970ed08685a7ca022bee88bd28283fd3931626",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://06adb83388b9363656f13b9335c619055e25cbceb38603ffc72b25c55071d824",
+				"dweb:/ipfs/Qma9dbsFkLUyMzH4Fe4tcKf8hfW8JULyDQvh4LtSkb1kdY"
+			]
+		},
+		"src/libraries/MessageTypes.sol": {
+			"keccak256": "0xf31ee7126dde83ad3852d1a108639b5d25469ecb7b353b7b08524aca1f128181",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://6d74025d5f32c5bdfe36327e796558186120a22c6496f8257807933646f71b4f",
+				"dweb:/ipfs/QmYbawMcKfrLTzKS7EAYu5oxsEBYYLFhqmarcNR4dXvx5p"
+			]
+		}
+	},
+	"version": 1
+}

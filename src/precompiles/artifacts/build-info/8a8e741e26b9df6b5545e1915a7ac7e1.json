@@ -1,0 +1,1152 @@
+{
+	"id": "8a8e741e26b9df6b5545e1915a7ac7e1",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.4.26",
+	"solcLongVersion": "0.4.26+commit.4563c3fc",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"src/precompiles/ArbOwnerPublic.sol": {
+				"content": "// Copyright 2021-2022, Offchain Labs, Inc.\n// For license information, see https://github.com/OffchainLabs/nitro-contracts/blob/main/LICENSE\n// SPDX-License-Identifier: BUSL-1.1\n\npragma solidity >=0.4.21 <0.9.0;\n\n/// @title Provides non-owners with info about the current chain owners.\n/// @notice Precompiled contract that exists in every Arbitrum chain at 0x000000000000000000000000000000000000006b.\ninterface ArbOwnerPublic {\n    /// @notice See if the user is a chain owner\n    function isChainOwner(address addr) external view returns (bool);\n\n    /**\n     * @notice Rectify the list of chain owners\n     * If successful, emits ChainOwnerRectified event\n     * Available in ArbOS version 11\n     */\n    function rectifyChainOwner(address ownerToRectify) external;\n\n    /// @notice Retrieves the list of chain owners\n    function getAllChainOwners() external view returns (address[] memory);\n\n    /// @notice Gets the network fee collector\n    function getNetworkFeeAccount() external view returns (address);\n\n    /// @notice Get the infrastructure fee collector\n    function getInfraFeeAccount() external view returns (address);\n\n    /// @notice Get the Brotli compression level used for fast compression\n    function getBrotliCompressionLevel() external view returns (uint64);\n\n    /// @notice Get the next scheduled ArbOS version upgrade and its activation timestamp.\n    /// Returns (0, 0) if no ArbOS upgrade is scheduled.\n    /// Available in ArbOS version 20.\n    function getScheduledUpgrade()\n        external\n        view\n        returns (uint64 arbosVersion, uint64 scheduledForTimestamp);\n\n    event ChainOwnerRectified(address rectifiedOwner);\n\n    /// @notice Retrieves the list of tx.from in pricer\n    function getPricerTxFromAddrs() external view returns (address[] memory);\n\n    /// @notice Retrieves the list of tx.to in pricer\n    function getPricerTxToAddrs() external view returns (address[] memory);\n\n    /// @notice See if the tx.from is in the pricer\n    function isPricerTxFrom(address addr) external view returns (bool);\n\n    /// @notice See if the tx.to is in the pricer\n    function isPricerTxTo(address addr) external view returns (bool);\n}\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"src/precompiles/ArbOwnerPublic.sol": {
+				"ArbOwnerPublic": {
+					"abi": [
+						{
+							"constant": true,
+							"inputs": [
+								{
+									"name": "addr",
+									"type": "address"
+								}
+							],
+							"name": "isPricerTxTo",
+							"outputs": [
+								{
+									"name": "",
+									"type": "bool"
+								}
+							],
+							"payable": false,
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"constant": true,
+							"inputs": [],
+							"name": "getBrotliCompressionLevel",
+							"outputs": [
+								{
+									"name": "",
+									"type": "uint64"
+								}
+							],
+							"payable": false,
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"constant": true,
+							"inputs": [
+								{
+									"name": "addr",
+									"type": "address"
+								}
+							],
+							"name": "isChainOwner",
+							"outputs": [
+								{
+									"name": "",
+									"type": "bool"
+								}
+							],
+							"payable": false,
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"constant": true,
+							"inputs": [],
+							"name": "getNetworkFeeAccount",
+							"outputs": [
+								{
+									"name": "",
+									"type": "address"
+								}
+							],
+							"payable": false,
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"constant": true,
+							"inputs": [],
+							"name": "getAllChainOwners",
+							"outputs": [
+								{
+									"name": "",
+									"type": "address[]"
+								}
+							],
+							"payable": false,
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"constant": false,
+							"inputs": [
+								{
+									"name": "ownerToRectify",
+									"type": "address"
+								}
+							],
+							"name": "rectifyChainOwner",
+							"outputs": [],
+							"payable": false,
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"constant": true,
+							"inputs": [],
+							"name": "getScheduledUpgrade",
+							"outputs": [
+								{
+									"name": "arbosVersion",
+									"type": "uint64"
+								},
+								{
+									"name": "scheduledForTimestamp",
+									"type": "uint64"
+								}
+							],
+							"payable": false,
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"constant": true,
+							"inputs": [
+								{
+									"name": "addr",
+									"type": "address"
+								}
+							],
+							"name": "isPricerTxFrom",
+							"outputs": [
+								{
+									"name": "",
+									"type": "bool"
+								}
+							],
+							"payable": false,
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"constant": true,
+							"inputs": [],
+							"name": "getPricerTxToAddrs",
+							"outputs": [
+								{
+									"name": "",
+									"type": "address[]"
+								}
+							],
+							"payable": false,
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"constant": true,
+							"inputs": [],
+							"name": "getInfraFeeAccount",
+							"outputs": [
+								{
+									"name": "",
+									"type": "address"
+								}
+							],
+							"payable": false,
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"constant": true,
+							"inputs": [],
+							"name": "getPricerTxFromAddrs",
+							"outputs": [
+								{
+									"name": "",
+									"type": "address[]"
+								}
+							],
+							"payable": false,
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"anonymous": false,
+							"inputs": [
+								{
+									"indexed": false,
+									"name": "rectifiedOwner",
+									"type": "address"
+								}
+							],
+							"name": "ChainOwnerRectified",
+							"type": "event"
+						}
+					],
+					"devdoc": {
+						"methods": {},
+						"title": "Provides non-owners with info about the current chain owners."
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"getAllChainOwners()": "516b4e0f",
+							"getBrotliCompressionLevel()": "22d499c7",
+							"getInfraFeeAccount()": "ee95a824",
+							"getNetworkFeeAccount()": "2d9125e9",
+							"getPricerTxFromAddrs()": "fa9d0610",
+							"getPricerTxToAddrs()": "b3de910e",
+							"getScheduledUpgrade()": "81ef944c",
+							"isChainOwner(address)": "26ef7f68",
+							"isPricerTxFrom(address)": "9b2e5daa",
+							"isPricerTxTo(address)": "0fced1e3",
+							"rectifyChainOwner(address)": "6fe86373"
+						}
+					},
+					"metadata": "",
+					"userdoc": {
+						"methods": {
+							"getAllChainOwners()": {
+								"notice": "Retrieves the list of chain owners"
+							},
+							"getBrotliCompressionLevel()": {
+								"notice": "Get the Brotli compression level used for fast compression"
+							},
+							"getInfraFeeAccount()": {
+								"notice": "Get the infrastructure fee collector"
+							},
+							"getNetworkFeeAccount()": {
+								"notice": "Gets the network fee collector"
+							},
+							"getPricerTxFromAddrs()": {
+								"notice": "Retrieves the list of tx.from in pricer"
+							},
+							"getPricerTxToAddrs()": {
+								"notice": "Retrieves the list of tx.to in pricer"
+							},
+							"getScheduledUpgrade()": {
+								"notice": "Get the next scheduled ArbOS version upgrade and its activation timestamp. Returns (0, 0) if no ArbOS upgrade is scheduled. Available in ArbOS version 20."
+							},
+							"isChainOwner(address)": {
+								"notice": "See if the user is a chain owner"
+							},
+							"isPricerTxFrom(address)": {
+								"notice": "See if the tx.from is in the pricer"
+							},
+							"isPricerTxTo(address)": {
+								"notice": "See if the tx.to is in the pricer"
+							},
+							"rectifyChainOwner(address)": {
+								"notice": "Rectify the list of chain owners If successful, emits ChainOwnerRectified event Available in ArbOS version 11"
+							}
+						}
+					}
+				}
+			}
+		},
+		"sources": {
+			"src/precompiles/ArbOwnerPublic.sol": {
+				"ast": {
+					"absolutePath": "src/precompiles/ArbOwnerPublic.sol",
+					"exportedSymbols": {
+						"ArbOwnerPublic": [
+							72
+						]
+					},
+					"id": 73,
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								">=",
+								"0.4",
+								".21",
+								"<",
+								"0.9",
+								".0"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "180:32:0"
+						},
+						{
+							"baseContracts": [],
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"documentation": "@title Provides non-owners with info about the current chain owners.\n @notice Precompiled contract that exists in every Arbitrum chain at 0x000000000000000000000000000000000000006b.",
+							"fullyImplemented": false,
+							"id": 72,
+							"linearizedBaseContracts": [
+								72
+							],
+							"name": "ArbOwnerPublic",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"body": null,
+									"documentation": "@notice See if the user is a chain owner",
+									"id": 8,
+									"implemented": false,
+									"isConstructor": false,
+									"isDeclaredConst": true,
+									"modifiers": [],
+									"name": "isChainOwner",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 4,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 3,
+												"name": "addr",
+												"nodeType": "VariableDeclaration",
+												"scope": 8,
+												"src": "505:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 2,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "505:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "504:14:0"
+									},
+									"payable": false,
+									"returnParameters": {
+										"id": 7,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 6,
+												"name": "",
+												"nodeType": "VariableDeclaration",
+												"scope": 8,
+												"src": "542:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 5,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "542:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "541:6:0"
+									},
+									"scope": 72,
+									"src": "483:65:0",
+									"stateMutability": "view",
+									"superFunction": null,
+									"visibility": "external"
+								},
+								{
+									"body": null,
+									"documentation": "@notice Rectify the list of chain owners\nIf successful, emits ChainOwnerRectified event\nAvailable in ArbOS version 11",
+									"id": 13,
+									"implemented": false,
+									"isConstructor": false,
+									"isDeclaredConst": false,
+									"modifiers": [],
+									"name": "rectifyChainOwner",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 11,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 10,
+												"name": "ownerToRectify",
+												"nodeType": "VariableDeclaration",
+												"scope": 13,
+												"src": "736:22:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 9,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "736:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "735:24:0"
+									},
+									"payable": false,
+									"returnParameters": {
+										"id": 12,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "768:0:0"
+									},
+									"scope": 72,
+									"src": "709:60:0",
+									"stateMutability": "nonpayable",
+									"superFunction": null,
+									"visibility": "external"
+								},
+								{
+									"body": null,
+									"documentation": "@notice Retrieves the list of chain owners",
+									"id": 19,
+									"implemented": false,
+									"isConstructor": false,
+									"isDeclaredConst": true,
+									"modifiers": [],
+									"name": "getAllChainOwners",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 14,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "852:2:0"
+									},
+									"payable": false,
+									"returnParameters": {
+										"id": 18,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 17,
+												"name": "",
+												"nodeType": "VariableDeclaration",
+												"scope": 19,
+												"src": "878:9:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+													"typeString": "address[]"
+												},
+												"typeName": {
+													"baseType": {
+														"id": 15,
+														"name": "address",
+														"nodeType": "ElementaryTypeName",
+														"src": "878:7:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_address",
+															"typeString": "address"
+														}
+													},
+													"id": 16,
+													"length": null,
+													"nodeType": "ArrayTypeName",
+													"src": "878:9:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+														"typeString": "address[]"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "877:18:0"
+									},
+									"scope": 72,
+									"src": "826:70:0",
+									"stateMutability": "view",
+									"superFunction": null,
+									"visibility": "external"
+								},
+								{
+									"body": null,
+									"documentation": "@notice Gets the network fee collector",
+									"id": 24,
+									"implemented": false,
+									"isConstructor": false,
+									"isDeclaredConst": true,
+									"modifiers": [],
+									"name": "getNetworkFeeAccount",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 20,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "978:2:0"
+									},
+									"payable": false,
+									"returnParameters": {
+										"id": 23,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 22,
+												"name": "",
+												"nodeType": "VariableDeclaration",
+												"scope": 24,
+												"src": "1004:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 21,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1004:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "1003:9:0"
+									},
+									"scope": 72,
+									"src": "949:64:0",
+									"stateMutability": "view",
+									"superFunction": null,
+									"visibility": "external"
+								},
+								{
+									"body": null,
+									"documentation": "@notice Get the infrastructure fee collector",
+									"id": 29,
+									"implemented": false,
+									"isConstructor": false,
+									"isDeclaredConst": true,
+									"modifiers": [],
+									"name": "getInfraFeeAccount",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 25,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1099:2:0"
+									},
+									"payable": false,
+									"returnParameters": {
+										"id": 28,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 27,
+												"name": "",
+												"nodeType": "VariableDeclaration",
+												"scope": 29,
+												"src": "1125:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 26,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1125:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "1124:9:0"
+									},
+									"scope": 72,
+									"src": "1072:62:0",
+									"stateMutability": "view",
+									"superFunction": null,
+									"visibility": "external"
+								},
+								{
+									"body": null,
+									"documentation": "@notice Get the Brotli compression level used for fast compression",
+									"id": 34,
+									"implemented": false,
+									"isConstructor": false,
+									"isDeclaredConst": true,
+									"modifiers": [],
+									"name": "getBrotliCompressionLevel",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 30,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1249:2:0"
+									},
+									"payable": false,
+									"returnParameters": {
+										"id": 33,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 32,
+												"name": "",
+												"nodeType": "VariableDeclaration",
+												"scope": 34,
+												"src": "1275:6:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												},
+												"typeName": {
+													"id": 31,
+													"name": "uint64",
+													"nodeType": "ElementaryTypeName",
+													"src": "1275:6:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint64",
+														"typeString": "uint64"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "1274:8:0"
+									},
+									"scope": 72,
+									"src": "1215:68:0",
+									"stateMutability": "view",
+									"superFunction": null,
+									"visibility": "external"
+								},
+								{
+									"body": null,
+									"documentation": "@notice Get the next scheduled ArbOS version upgrade and its activation timestamp.\n Returns (0, 0) if no ArbOS upgrade is scheduled.\n Available in ArbOS version 20.",
+									"id": 41,
+									"implemented": false,
+									"isConstructor": false,
+									"isDeclaredConst": true,
+									"modifiers": [],
+									"name": "getScheduledUpgrade",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 35,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1504:2:0"
+									},
+									"payable": false,
+									"returnParameters": {
+										"id": 40,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 37,
+												"name": "arbosVersion",
+												"nodeType": "VariableDeclaration",
+												"scope": 41,
+												"src": "1554:19:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												},
+												"typeName": {
+													"id": 36,
+													"name": "uint64",
+													"nodeType": "ElementaryTypeName",
+													"src": "1554:6:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint64",
+														"typeString": "uint64"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 39,
+												"name": "scheduledForTimestamp",
+												"nodeType": "VariableDeclaration",
+												"scope": 41,
+												"src": "1575:28:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												},
+												"typeName": {
+													"id": 38,
+													"name": "uint64",
+													"nodeType": "ElementaryTypeName",
+													"src": "1575:6:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint64",
+														"typeString": "uint64"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "1553:51:0"
+									},
+									"scope": 72,
+									"src": "1476:129:0",
+									"stateMutability": "view",
+									"superFunction": null,
+									"visibility": "external"
+								},
+								{
+									"anonymous": false,
+									"documentation": null,
+									"id": 45,
+									"name": "ChainOwnerRectified",
+									"nodeType": "EventDefinition",
+									"parameters": {
+										"id": 44,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 43,
+												"indexed": false,
+												"name": "rectifiedOwner",
+												"nodeType": "VariableDeclaration",
+												"scope": 45,
+												"src": "1637:22:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 42,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1637:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "1636:24:0"
+									},
+									"src": "1611:50:0"
+								},
+								{
+									"body": null,
+									"documentation": "@notice Retrieves the list of tx.from in pricer",
+									"id": 51,
+									"implemented": false,
+									"isConstructor": false,
+									"isDeclaredConst": true,
+									"modifiers": [],
+									"name": "getPricerTxFromAddrs",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 46,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1752:2:0"
+									},
+									"payable": false,
+									"returnParameters": {
+										"id": 50,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 49,
+												"name": "",
+												"nodeType": "VariableDeclaration",
+												"scope": 51,
+												"src": "1778:9:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+													"typeString": "address[]"
+												},
+												"typeName": {
+													"baseType": {
+														"id": 47,
+														"name": "address",
+														"nodeType": "ElementaryTypeName",
+														"src": "1778:7:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_address",
+															"typeString": "address"
+														}
+													},
+													"id": 48,
+													"length": null,
+													"nodeType": "ArrayTypeName",
+													"src": "1778:9:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+														"typeString": "address[]"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "1777:18:0"
+									},
+									"scope": 72,
+									"src": "1723:73:0",
+									"stateMutability": "view",
+									"superFunction": null,
+									"visibility": "external"
+								},
+								{
+									"body": null,
+									"documentation": "@notice Retrieves the list of tx.to in pricer",
+									"id": 57,
+									"implemented": false,
+									"isConstructor": false,
+									"isDeclaredConst": true,
+									"modifiers": [],
+									"name": "getPricerTxToAddrs",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 52,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1883:2:0"
+									},
+									"payable": false,
+									"returnParameters": {
+										"id": 56,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 55,
+												"name": "",
+												"nodeType": "VariableDeclaration",
+												"scope": 57,
+												"src": "1909:9:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+													"typeString": "address[]"
+												},
+												"typeName": {
+													"baseType": {
+														"id": 53,
+														"name": "address",
+														"nodeType": "ElementaryTypeName",
+														"src": "1909:7:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_address",
+															"typeString": "address"
+														}
+													},
+													"id": 54,
+													"length": null,
+													"nodeType": "ArrayTypeName",
+													"src": "1909:9:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+														"typeString": "address[]"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "1908:18:0"
+									},
+									"scope": 72,
+									"src": "1856:71:0",
+									"stateMutability": "view",
+									"superFunction": null,
+									"visibility": "external"
+								},
+								{
+									"body": null,
+									"documentation": "@notice See if the tx.from is in the pricer",
+									"id": 64,
+									"implemented": false,
+									"isConstructor": false,
+									"isDeclaredConst": true,
+									"modifiers": [],
+									"name": "isPricerTxFrom",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 60,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 59,
+												"name": "addr",
+												"nodeType": "VariableDeclaration",
+												"scope": 64,
+												"src": "2009:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 58,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "2009:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "2008:14:0"
+									},
+									"payable": false,
+									"returnParameters": {
+										"id": 63,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 62,
+												"name": "",
+												"nodeType": "VariableDeclaration",
+												"scope": 64,
+												"src": "2046:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 61,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "2046:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "2045:6:0"
+									},
+									"scope": 72,
+									"src": "1985:67:0",
+									"stateMutability": "view",
+									"superFunction": null,
+									"visibility": "external"
+								},
+								{
+									"body": null,
+									"documentation": "@notice See if the tx.to is in the pricer",
+									"id": 71,
+									"implemented": false,
+									"isConstructor": false,
+									"isDeclaredConst": true,
+									"modifiers": [],
+									"name": "isPricerTxTo",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 67,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 66,
+												"name": "addr",
+												"nodeType": "VariableDeclaration",
+												"scope": 71,
+												"src": "2130:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 65,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "2130:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "2129:14:0"
+									},
+									"payable": false,
+									"returnParameters": {
+										"id": 70,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 69,
+												"name": "",
+												"nodeType": "VariableDeclaration",
+												"scope": 71,
+												"src": "2167:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 68,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "2167:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "2166:6:0"
+									},
+									"scope": 72,
+									"src": "2108:65:0",
+									"stateMutability": "view",
+									"superFunction": null,
+									"visibility": "external"
+								}
+							],
+							"scope": 73,
+							"src": "403:1772:0"
+						}
+					],
+					"src": "180:1996:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

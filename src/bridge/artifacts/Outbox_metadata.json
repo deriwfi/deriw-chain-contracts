@@ -1,0 +1,834 @@
+{
+	"compiler": {
+		"version": "0.8.16+commit.07a7930e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "AlreadyInit",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "AlreadySpent",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "BadPostUpgradeInit",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "BridgeCallFailed",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "HadZeroInit",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "actualLength",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxProofLength",
+						"type": "uint256"
+					}
+				],
+				"name": "MerkleProofTooLong",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "NotOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "rollup",
+						"type": "address"
+					}
+				],
+				"name": "NotRollup",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxIndex",
+						"type": "uint256"
+					}
+				],
+				"name": "PathNotMinimal",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "proofLength",
+						"type": "uint256"
+					}
+				],
+				"name": "ProofTooLong",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "RollupNotChanged",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "SimulationOnlyEntrypoint",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "root",
+						"type": "bytes32"
+					}
+				],
+				"name": "UnknownRoot",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "l2Sender",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "zero",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "transactionIndex",
+						"type": "uint256"
+					}
+				],
+				"name": "OutBoxTransactionExecuted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "outputRoot",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "l2BlockHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "SendRootUpdated",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "OUTBOX_VERSION",
+				"outputs": [
+					{
+						"internalType": "uint128",
+						"name": "",
+						"type": "uint128"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "bridge",
+				"outputs": [
+					{
+						"internalType": "contract IBridge",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "l2Sender",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "l2Block",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "l1Block",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "l2Timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "calculateItemHash",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "proof",
+						"type": "bytes32[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "path",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "item",
+						"type": "bytes32"
+					}
+				],
+				"name": "calculateMerkleRoot",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "proof",
+						"type": "bytes32[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "l2Sender",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "l2Block",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "l1Block",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "l2Timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "executeTransaction",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "l2Sender",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "l2Block",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "l1Block",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "l2Timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "executeTransactionSimulation",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IBridge",
+						"name": "_bridge",
+						"type": "address"
+					}
+				],
+				"name": "initialize",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "isSpent",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "l2ToL1BatchNum",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "l2ToL1Block",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "l2ToL1EthBlock",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "l2ToL1OutputId",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "l2ToL1Sender",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "l2ToL1Timestamp",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "postUpgradeInit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rollup",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "roots",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "spent",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "updateRollupAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "root",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "l2BlockHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "updateSendRoot",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"AlreadyInit()": [
+					{
+						"details": "Init was already called"
+					}
+				],
+				"AlreadySpent(uint256)": [
+					{
+						"details": "The record has already been spent",
+						"params": {
+							"index": "The index of the spent record"
+						}
+					}
+				],
+				"BadPostUpgradeInit()": [
+					{
+						"details": "Thrown when post upgrade init validation fails"
+					}
+				],
+				"BridgeCallFailed()": [
+					{
+						"details": "A call to the bridge failed with no return data"
+					}
+				],
+				"HadZeroInit()": [
+					{
+						"details": "Init was called with param set to zero that must be nonzero"
+					}
+				],
+				"MerkleProofTooLong(uint256,uint256)": [
+					{
+						"details": "The merkle proof provided was too long",
+						"params": {
+							"actualLength": "The length of the merkle proof provided",
+							"maxProofLength": "The max length a merkle proof can have"
+						}
+					}
+				],
+				"NotOwner(address,address)": [
+					{
+						"details": "Thrown when non owner tries to access an only-owner function",
+						"params": {
+							"owner": "The owner address",
+							"sender": "The msg.sender who is not the owner"
+						}
+					}
+				],
+				"NotRollup(address,address)": [
+					{
+						"details": "Thrown when an address that is not the rollup tries to call an only-rollup function",
+						"params": {
+							"rollup": "The rollup address authorized to call this function",
+							"sender": "The sender who is not the rollup"
+						}
+					}
+				],
+				"PathNotMinimal(uint256,uint256)": [
+					{
+						"details": "The output index was greater than the maximum",
+						"params": {
+							"index": "The output index",
+							"maxIndex": "The max the index could be"
+						}
+					}
+				],
+				"ProofTooLong(uint256)": [
+					{
+						"details": "The provided proof was too long",
+						"params": {
+							"proofLength": "The length of the too-long proof"
+						}
+					}
+				],
+				"RollupNotChanged()": [
+					{
+						"details": "Thrown when rollup is not updated with updateRollupAddress"
+					}
+				],
+				"SimulationOnlyEntrypoint()": [
+					{
+						"details": "this error is thrown since certain functions are only expected to be used in simulations, not in actual txs"
+					}
+				],
+				"UnknownRoot(bytes32)": [
+					{
+						"details": "The calculated root does not exist",
+						"params": {
+							"root": "The calculated root"
+						}
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"executeTransaction(bytes32[],uint256,address,address,uint256,uint256,uint256,uint256,bytes)": {
+					"details": "Reverts if dispute period hasn't expired, since the outbox entry      is only created once the rollup confirms the respective assertion.it is not possible to execute any L2-to-L1 transaction which contains data      to a contract address without any code (as enforced by the Bridge contract).",
+					"params": {
+						"data": "abi-encoded L1 message data",
+						"index": "Merkle path to message",
+						"l1Block": "l1 block number at which sendTxToL1 call was made",
+						"l2Block": "l2 block number at which sendTxToL1 call was made",
+						"l2Sender": "sender if original message (i.e., caller of ArbSys.sendTxToL1)",
+						"l2Timestamp": "l2 Timestamp at which sendTxToL1 call was made",
+						"proof": "Merkle proof of message inclusion in send root",
+						"to": "destination address for L1 contract call",
+						"value": "wei in L1 message"
+					}
+				},
+				"executeTransactionSimulation(uint256,address,address,uint256,uint256,uint256,uint256,bytes)": {
+					"details": "function used to simulate the result of a particular function call from the outbox       it is useful for things such as gas estimates. This function includes all costs except for       proof validation (which can be considered offchain as a somewhat of a fixed cost - it's       not really a fixed cost, but can be treated as so with a fixed overhead for gas estimation).       We can't include the cost of proof validation since this is intended to be used to simulate txs       that are included in yet-to-be confirmed merkle roots. The simulation entrypoint could instead pretend       to confirm a pending merkle root, but that would be less practical for integrating with tooling.       It is only possible to trigger it when the msg sender is address zero, which should be impossible       unless under simulation in an eth_call or eth_estimateGas"
+				},
+				"isSpent(uint256)": {
+					"params": {
+						"index": "Merkle path to message"
+					},
+					"returns": {
+						"_0": "true if the message has been spent"
+					}
+				},
+				"l2ToL1Block()": {
+					"returns": {
+						"_0": "l2Block return L2 block when the L2 tx was initiated or 0 if no L2 to L1 transaction is active"
+					}
+				},
+				"l2ToL1EthBlock()": {
+					"returns": {
+						"_0": "l1Block return L1 block when the L2 tx was initiated or 0 if no L2 to L1 transaction is active"
+					}
+				},
+				"l2ToL1OutputId()": {
+					"returns": {
+						"_0": "outputId returns the unique output identifier of the L2 to L1 tx or 0 if no L2 to L1 transaction is active"
+					}
+				},
+				"l2ToL1Sender()": {
+					"details": "the l2ToL1Sender behaves as the tx.origin, the msg.sender should be validated to protect against reentrancies"
+				},
+				"l2ToL1Timestamp()": {
+					"returns": {
+						"_0": "timestamp return L2 timestamp when the L2 tx was initiated or 0 if no L2 to L1 transaction is active"
+					}
+				},
+				"postUpgradeInit()": {
+					"details": "function to be called one time during the outbox upgrade process      this is used to fix the storage slots"
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"executeTransaction(bytes32[],uint256,address,address,uint256,uint256,uint256,uint256,bytes)": {
+					"notice": "Executes a messages in an Outbox entry."
+				},
+				"l2ToL1BatchNum()": {
+					"notice": "batch number is deprecated and now always returns 0"
+				},
+				"l2ToL1Sender()": {
+					"notice": "When l2ToL1Sender returns a nonzero address, the message was originated by an L2 account         When the return value is zero, that means this is a system message"
+				},
+				"updateRollupAddress()": {
+					"notice": "Allows the rollup owner to sync the rollup address"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/bridge/Outbox.sol": "Outbox"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"src/bridge/AbsOutbox.sol": {
+			"keccak256": "0x07574a97093cb074fc90772ce85d830c99b2773d5d61d1722e8da80113fcc0f9",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://96cad110c345402d126f5b0b79683cb6542aca4aa4bc70b30f0c035110c0bb5e",
+				"dweb:/ipfs/Qmdrqrct3w8v7AV6JzMJaVZNS1tPqMdFGdaVdhHg7MNCSX"
+			]
+		},
+		"src/bridge/IBridge.sol": {
+			"keccak256": "0xeba1e59fa4dd56d0d2cd775ab726d08e470bf3056f5473ce62b98499e55ff7bd",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://fca93cb8bf8369a86d299b263081d1789fd5f0b2579cd229f26e007b8f269d5f",
+				"dweb:/ipfs/QmVwEQLsy7sSGwJ7MEWeHPwSunKu1Hr5YozzNy6CW1prmH"
+			]
+		},
+		"src/bridge/IOutbox.sol": {
+			"keccak256": "0x2de956f0a532a8db249be0eff614db7caa73eec2afb485c1ac9aed78ecf39e5f",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://d2ceb5dc3a34dc692f9a6c6eec9227ad7f2cfc423e8fd55460427e013819493b",
+				"dweb:/ipfs/Qmd3F4xSMP1aFCq2GcwEESVhqxWzGdH8y5ReK3V8UBNEZc"
+			]
+		},
+		"src/bridge/IOwnable.sol": {
+			"keccak256": "0x0ce0ccc2cd25968ab37aef146be9c9a615c3f2ad239fa759d1745190666729fd",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://6516e1a94fdc9530b90ceb408e3083ecc7e844afd4fc34a7ccab89a191c3b88f",
+				"dweb:/ipfs/QmZ4UwQe1pgTJxx1XqzcAKTgu9Wo6qZA5WSCPHygFJSdi8"
+			]
+		},
+		"src/bridge/Outbox.sol": {
+			"keccak256": "0x7f9a0af68f4c1d9344672556ec86d526876389241d100139ae7915e63d7cd1e8",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://cd254aa21bfbca9e30a7c0aea666d7c9e8e27a43b6f28d5baf15a67ff66c0c02",
+				"dweb:/ipfs/QmeAyfmBtE5prtP6j1dbokJLQCZw4YxysG4XN6Wa3YwYZp"
+			]
+		},
+		"src/libraries/DelegateCallAware.sol": {
+			"keccak256": "0xd87b87769f0561e21ff11b0ec95f5e98dc14b418e6c2f84aaeaef219b18e4001",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://1d8a77591443fbdddaab5d4a3377f777d3fe0b9407259a6a3047680ab972174c",
+				"dweb:/ipfs/QmYE2hrmJizzxJptBcUFXxxijS8YMVZag1EfAq19Qy1Nmd"
+			]
+		},
+		"src/libraries/Error.sol": {
+			"keccak256": "0x0585f0f907e6705ad477b6699e970ed08685a7ca022bee88bd28283fd3931626",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://06adb83388b9363656f13b9335c619055e25cbceb38603ffc72b25c55071d824",
+				"dweb:/ipfs/Qma9dbsFkLUyMzH4Fe4tcKf8hfW8JULyDQvh4LtSkb1kdY"
+			]
+		},
+		"src/libraries/MerkleLib.sol": {
+			"keccak256": "0x2bc0530a3d472e90f9fe839be1deed7a36b0d7e148dd0906b44d2c637720cb88",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://8d34f2bdfa63288d61e0c1ff5a91c90397ceca71080d2a23982e1dad026c7411",
+				"dweb:/ipfs/QmQaTmfd5MLpBZVRrgDQ6Pac8KrGs26PwPGzcKrBG3RU3u"
+			]
+		}
+	},
+	"version": 1
+}

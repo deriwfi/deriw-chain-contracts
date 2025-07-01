@@ -1,0 +1,759 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"addChainOwner(address)": "481f8dbf",
+			"addPricerTxFrom(address)": "9aa69f33",
+			"addPricerTxTo(address)": "08755606",
+			"addWasmCacheManager(address)": "ffdca515",
+			"getAllChainOwners()": "516b4e0f",
+			"getInfraFeeAccount()": "ee95a824",
+			"getNetworkFeeAccount()": "2d9125e9",
+			"getPricerTxFromAddrs()": "fa9d0610",
+			"getPricerTxToAddrs()": "b3de910e",
+			"isChainOwner(address)": "26ef7f68",
+			"isPricerTxFrom(address)": "9b2e5daa",
+			"isPricerTxTo(address)": "0fced1e3",
+			"releaseL1PricerSurplusFunds(uint256)": "314bcf05",
+			"removeChainOwner(address)": "8792701a",
+			"removePricerTxFrom(address)": "80d843c7",
+			"removePricerTxTo(address)": "938c0556",
+			"removeWasmCacheManager(address)": "bf197322",
+			"scheduleArbOSUpgrade(uint64,uint64)": "e388b381",
+			"setAmortizedCostCapBips(uint64)": "56191cc3",
+			"setBrotliCompressionLevel(uint64)": "5399126f",
+			"setChainConfig(string)": "eda73212",
+			"setInfraFeeAccount(address)": "57f585db",
+			"setInkPrice(uint32)": "8c1d4fda",
+			"setL1BaseFeeEstimateInertia(uint64)": "718f7805",
+			"setL1PricePerUnit(uint256)": "2b352fae",
+			"setL1PricingEquilibrationUnits(uint256)": "152db696",
+			"setL1PricingInertia(uint64)": "775a82e9",
+			"setL1PricingRewardRate(uint64)": "f6739500",
+			"setL1PricingRewardRecipient(address)": "934be07d",
+			"setL2BaseFee(uint256)": "d99bc80e",
+			"setL2GasBacklogTolerance(uint64)": "198e7157",
+			"setL2GasPricingInertia(uint64)": "3fd62a29",
+			"setMaxTxGasLimit(uint64)": "39673611",
+			"setMinimumL2BaseFee(uint256)": "a0188cdb",
+			"setNetworkFeeAccount(address)": "fcdde2b4",
+			"setPerBatchGasCharge(int64)": "fad7f20b",
+			"setSpeedLimit(uint64)": "4d7a060d",
+			"setWasmBlockCacheSize(uint16)": "380f1457",
+			"setWasmExpiryDays(uint16)": "aac68018",
+			"setWasmFreePages(uint16)": "3f37a846",
+			"setWasmInitCostScalar(uint64)": "67e0718f",
+			"setWasmKeepaliveDays(uint16)": "2a9cbe3e",
+			"setWasmMaxStackDepth(uint32)": "4567cc8e",
+			"setWasmMinInitGas(uint8,uint16)": "8293405e",
+			"setWasmPageGas(uint16)": "aaa619e0",
+			"setWasmPageLimit(uint16)": "6595381a"
+		}
+	},
+	"abi": [
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "bytes4",
+					"name": "method",
+					"type": "bytes4"
+				},
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "owner",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "OwnerActs",
+			"type": "event"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "newOwner",
+					"type": "address"
+				}
+			],
+			"name": "addChainOwner",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "addr",
+					"type": "address"
+				}
+			],
+			"name": "addPricerTxFrom",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "addr",
+					"type": "address"
+				}
+			],
+			"name": "addPricerTxTo",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "manager",
+					"type": "address"
+				}
+			],
+			"name": "addWasmCacheManager",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getAllChainOwners",
+			"outputs": [
+				{
+					"internalType": "address[]",
+					"name": "",
+					"type": "address[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getInfraFeeAccount",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getNetworkFeeAccount",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getPricerTxFromAddrs",
+			"outputs": [
+				{
+					"internalType": "address[]",
+					"name": "",
+					"type": "address[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getPricerTxToAddrs",
+			"outputs": [
+				{
+					"internalType": "address[]",
+					"name": "",
+					"type": "address[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "addr",
+					"type": "address"
+				}
+			],
+			"name": "isChainOwner",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "addr",
+					"type": "address"
+				}
+			],
+			"name": "isPricerTxFrom",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "addr",
+					"type": "address"
+				}
+			],
+			"name": "isPricerTxTo",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "maxWeiToRelease",
+					"type": "uint256"
+				}
+			],
+			"name": "releaseL1PricerSurplusFunds",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "ownerToRemove",
+					"type": "address"
+				}
+			],
+			"name": "removeChainOwner",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "addr",
+					"type": "address"
+				}
+			],
+			"name": "removePricerTxFrom",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "addr",
+					"type": "address"
+				}
+			],
+			"name": "removePricerTxTo",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "manager",
+					"type": "address"
+				}
+			],
+			"name": "removeWasmCacheManager",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "newVersion",
+					"type": "uint64"
+				},
+				{
+					"internalType": "uint64",
+					"name": "timestamp",
+					"type": "uint64"
+				}
+			],
+			"name": "scheduleArbOSUpgrade",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "cap",
+					"type": "uint64"
+				}
+			],
+			"name": "setAmortizedCostCapBips",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "level",
+					"type": "uint64"
+				}
+			],
+			"name": "setBrotliCompressionLevel",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "chainConfig",
+					"type": "string"
+				}
+			],
+			"name": "setChainConfig",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "newInfraFeeAccount",
+					"type": "address"
+				}
+			],
+			"name": "setInfraFeeAccount",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint32",
+					"name": "price",
+					"type": "uint32"
+				}
+			],
+			"name": "setInkPrice",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "inertia",
+					"type": "uint64"
+				}
+			],
+			"name": "setL1BaseFeeEstimateInertia",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "pricePerUnit",
+					"type": "uint256"
+				}
+			],
+			"name": "setL1PricePerUnit",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "equilibrationUnits",
+					"type": "uint256"
+				}
+			],
+			"name": "setL1PricingEquilibrationUnits",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "inertia",
+					"type": "uint64"
+				}
+			],
+			"name": "setL1PricingInertia",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "weiPerUnit",
+					"type": "uint64"
+				}
+			],
+			"name": "setL1PricingRewardRate",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "recipient",
+					"type": "address"
+				}
+			],
+			"name": "setL1PricingRewardRecipient",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "priceInWei",
+					"type": "uint256"
+				}
+			],
+			"name": "setL2BaseFee",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "sec",
+					"type": "uint64"
+				}
+			],
+			"name": "setL2GasBacklogTolerance",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "sec",
+					"type": "uint64"
+				}
+			],
+			"name": "setL2GasPricingInertia",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "limit",
+					"type": "uint64"
+				}
+			],
+			"name": "setMaxTxGasLimit",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "priceInWei",
+					"type": "uint256"
+				}
+			],
+			"name": "setMinimumL2BaseFee",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "newNetworkFeeAccount",
+					"type": "address"
+				}
+			],
+			"name": "setNetworkFeeAccount",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "int64",
+					"name": "cost",
+					"type": "int64"
+				}
+			],
+			"name": "setPerBatchGasCharge",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "limit",
+					"type": "uint64"
+				}
+			],
+			"name": "setSpeedLimit",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint16",
+					"name": "count",
+					"type": "uint16"
+				}
+			],
+			"name": "setWasmBlockCacheSize",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint16",
+					"name": "_days",
+					"type": "uint16"
+				}
+			],
+			"name": "setWasmExpiryDays",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint16",
+					"name": "pages",
+					"type": "uint16"
+				}
+			],
+			"name": "setWasmFreePages",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "percent",
+					"type": "uint64"
+				}
+			],
+			"name": "setWasmInitCostScalar",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint16",
+					"name": "_days",
+					"type": "uint16"
+				}
+			],
+			"name": "setWasmKeepaliveDays",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint32",
+					"name": "depth",
+					"type": "uint32"
+				}
+			],
+			"name": "setWasmMaxStackDepth",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint8",
+					"name": "gas",
+					"type": "uint8"
+				},
+				{
+					"internalType": "uint16",
+					"name": "cached",
+					"type": "uint16"
+				}
+			],
+			"name": "setWasmMinInitGas",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint16",
+					"name": "gas",
+					"type": "uint16"
+				}
+			],
+			"name": "setWasmPageGas",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint16",
+					"name": "limit",
+					"type": "uint16"
+				}
+			],
+			"name": "setWasmPageLimit",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		}
+	]
+}

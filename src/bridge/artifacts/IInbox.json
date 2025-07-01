@@ -1,0 +1,734 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"allowListEnabled()": "22bd5c1c",
+			"bridge()": "e78cea92",
+			"calculateRetryableSubmissionFee(uint256,uint256)": "a66b327d",
+			"createRetryableTicket(address,uint256,uint256,address,address,uint256,uint256,bytes)": "679b6ded",
+			"depositEth()": "439370b1",
+			"getProxyAdmin()": "8b3240a0",
+			"initialize(address,address)": "485cc955",
+			"isAllowed(address)": "babcc539",
+			"maxDataSize()": "e8eb1dc3",
+			"pause()": "8456cb59",
+			"postUpgradeInit(address)": "c474d2c5",
+			"sendContractTransaction(uint256,uint256,address,uint256,bytes)": "8a631aa6",
+			"sendL1FundedContractTransaction(uint256,uint256,address,bytes)": "5e916758",
+			"sendL1FundedUnsignedTransaction(uint256,uint256,uint256,address,bytes)": "67ef3ab8",
+			"sendL1FundedUnsignedTransactionToFork(uint256,uint256,uint256,address,bytes)": "e6bd12cf",
+			"sendL2Message(bytes)": "b75436bb",
+			"sendL2MessageFromOrigin(bytes)": "1fe927cf",
+			"sendUnsignedTransaction(uint256,uint256,uint256,address,uint256,bytes)": "5075788b",
+			"sendUnsignedTransactionToFork(uint256,uint256,uint256,address,uint256,bytes)": "00f72382",
+			"sendWithdrawEthToFork(uint256,uint256,uint256,uint256,address)": "70665f14",
+			"sequencerInbox()": "ee35f327",
+			"setAllowList(address[],bool[])": "e3de72a5",
+			"setAllowListEnabled(bool)": "efeadb6d",
+			"unpause()": "3f4ba83a",
+			"unsafeCreateRetryableTicket(address,uint256,uint256,address,address,uint256,uint256,bytes)": "6e6e8a6a"
+		}
+	},
+	"abi": [
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "uint256",
+					"name": "messageNum",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "InboxMessageDelivered",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "uint256",
+					"name": "messageNum",
+					"type": "uint256"
+				}
+			],
+			"name": "InboxMessageDeliveredFromOrigin",
+			"type": "event"
+		},
+		{
+			"inputs": [],
+			"name": "allowListEnabled",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "bridge",
+			"outputs": [
+				{
+					"internalType": "contract IBridge",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "dataLength",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "baseFee",
+					"type": "uint256"
+				}
+			],
+			"name": "calculateRetryableSubmissionFee",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "l2CallValue",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxSubmissionCost",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "excessFeeRefundAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "callValueRefundAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "gasLimit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxFeePerGas",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "createRetryableTicket",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "depositEth",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getProxyAdmin",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "contract IBridge",
+					"name": "_bridge",
+					"type": "address"
+				},
+				{
+					"internalType": "contract ISequencerInbox",
+					"name": "_sequencerInbox",
+					"type": "address"
+				}
+			],
+			"name": "initialize",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "user",
+					"type": "address"
+				}
+			],
+			"name": "isAllowed",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "maxDataSize",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "pause",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "contract IBridge",
+					"name": "_bridge",
+					"type": "address"
+				}
+			],
+			"name": "postUpgradeInit",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "gasLimit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxFeePerGas",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "value",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "sendContractTransaction",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "gasLimit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxFeePerGas",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "sendL1FundedContractTransaction",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "gasLimit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxFeePerGas",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "nonce",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "sendL1FundedUnsignedTransaction",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "gasLimit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxFeePerGas",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "nonce",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "sendL1FundedUnsignedTransactionToFork",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes",
+					"name": "messageData",
+					"type": "bytes"
+				}
+			],
+			"name": "sendL2Message",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes",
+					"name": "messageData",
+					"type": "bytes"
+				}
+			],
+			"name": "sendL2MessageFromOrigin",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "gasLimit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxFeePerGas",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "nonce",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "value",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "sendUnsignedTransaction",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "gasLimit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxFeePerGas",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "nonce",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "value",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "sendUnsignedTransactionToFork",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "gasLimit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxFeePerGas",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "nonce",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "value",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "withdrawTo",
+					"type": "address"
+				}
+			],
+			"name": "sendWithdrawEthToFork",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "sequencerInbox",
+			"outputs": [
+				{
+					"internalType": "contract ISequencerInbox",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address[]",
+					"name": "user",
+					"type": "address[]"
+				},
+				{
+					"internalType": "bool[]",
+					"name": "val",
+					"type": "bool[]"
+				}
+			],
+			"name": "setAllowList",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bool",
+					"name": "_allowListEnabled",
+					"type": "bool"
+				}
+			],
+			"name": "setAllowListEnabled",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "unpause",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "l2CallValue",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxSubmissionCost",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "excessFeeRefundAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "callValueRefundAddress",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "gasLimit",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxFeePerGas",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "unsafeCreateRetryableTicket",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		}
+	]
+}

@@ -1,0 +1,912 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"BROTLI_MESSAGE_HEADER_FLAG()": "16af91a7",
+			"DAS_MESSAGE_HEADER_FLAG()": "f60a5091",
+			"DATA_AUTHENTICATED_FLAG()": "e5a358c8",
+			"DATA_BLOB_HEADER_FLAG()": "2cbf74e5",
+			"HEADER_LENGTH()": "27957a49",
+			"TREE_DAS_MESSAGE_HEADER_FLAG()": "6c890450",
+			"ZERO_HEAVY_MESSAGE_HEADER_FLAG()": "02c99275",
+			"addSequencerL2Batch(uint256,bytes,uint256,address,uint256,uint256)": "e0bc9729",
+			"addSequencerL2BatchFromBlobs(uint256,uint256,address,uint256,uint256)": "3e5aa082",
+			"addSequencerL2BatchFromOrigin(uint256,bytes,uint256,address)": "6f12b0c9",
+			"addSequencerL2BatchFromOrigin(uint256,bytes,uint256,address,uint256,uint256)": "8f111f3c",
+			"batchCount()": "06f13056",
+			"batchPosterManager()": "cc2a1a0c",
+			"bridge()": "e78cea92",
+			"dasKeySetInfo(bytes32)": "715ea34b",
+			"forceInclusion(uint256,uint8,uint64[2],uint256,address,bytes32)": "f1981578",
+			"getKeysetCreationBlock(bytes32)": "258f0495",
+			"inboxAccs(uint256)": "d9dd67ab",
+			"initialize(address,(uint256,uint256,uint256,uint256))": "1f7a92b2",
+			"invalidateKeysetHash(bytes32)": "84420860",
+			"isBatchPoster(address)": "71c3e6fe",
+			"isSequencer(address)": "6d46e987",
+			"isValidKeysetHash(bytes32)": "1637be48",
+			"maxDataSize()": "e8eb1dc3",
+			"maxTimeVariation()": "ebea461d",
+			"removeDelayAfterFork()": "96cc5c78",
+			"rollup()": "cb23bcb5",
+			"setBatchPosterManager(address)": "1ff64790",
+			"setIsBatchPoster(address,bool)": "6e7df3e7",
+			"setIsSequencer(address,bool)": "1f956632",
+			"setMaxTimeVariation((uint256,uint256,uint256,uint256))": "b31761f8",
+			"setValidKeyset(bytes)": "d1ce8da8",
+			"totalDelayedMessagesRead()": "7fa3a40e",
+			"updateRollupAddress()": "6ae71f12"
+		}
+	},
+	"abi": [
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "uint256",
+					"name": "messageNum",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "InboxMessageDelivered",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "uint256",
+					"name": "messageNum",
+					"type": "uint256"
+				}
+			],
+			"name": "InboxMessageDeliveredFromOrigin",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "bytes32",
+					"name": "keysetHash",
+					"type": "bytes32"
+				}
+			],
+			"name": "InvalidateKeyset",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "uint256",
+					"name": "id",
+					"type": "uint256"
+				}
+			],
+			"name": "OwnerFunctionCalled",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "uint256",
+					"name": "batchSequenceNumber",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				}
+			],
+			"name": "SequencerBatchData",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "uint256",
+					"name": "batchSequenceNumber",
+					"type": "uint256"
+				},
+				{
+					"indexed": true,
+					"internalType": "bytes32",
+					"name": "beforeAcc",
+					"type": "bytes32"
+				},
+				{
+					"indexed": true,
+					"internalType": "bytes32",
+					"name": "afterAcc",
+					"type": "bytes32"
+				},
+				{
+					"indexed": false,
+					"internalType": "bytes32",
+					"name": "delayedAcc",
+					"type": "bytes32"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "afterDelayedMessagesRead",
+					"type": "uint256"
+				},
+				{
+					"components": [
+						{
+							"internalType": "uint64",
+							"name": "minTimestamp",
+							"type": "uint64"
+						},
+						{
+							"internalType": "uint64",
+							"name": "maxTimestamp",
+							"type": "uint64"
+						},
+						{
+							"internalType": "uint64",
+							"name": "minBlockNumber",
+							"type": "uint64"
+						},
+						{
+							"internalType": "uint64",
+							"name": "maxBlockNumber",
+							"type": "uint64"
+						}
+					],
+					"indexed": false,
+					"internalType": "struct IBridge.TimeBounds",
+					"name": "timeBounds",
+					"type": "tuple"
+				},
+				{
+					"indexed": false,
+					"internalType": "enum IBridge.BatchDataLocation",
+					"name": "dataLocation",
+					"type": "uint8"
+				}
+			],
+			"name": "SequencerBatchDelivered",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "bytes32",
+					"name": "keysetHash",
+					"type": "bytes32"
+				},
+				{
+					"indexed": false,
+					"internalType": "bytes",
+					"name": "keysetBytes",
+					"type": "bytes"
+				}
+			],
+			"name": "SetValidKeyset",
+			"type": "event"
+		},
+		{
+			"inputs": [],
+			"name": "BROTLI_MESSAGE_HEADER_FLAG",
+			"outputs": [
+				{
+					"internalType": "bytes1",
+					"name": "",
+					"type": "bytes1"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "DAS_MESSAGE_HEADER_FLAG",
+			"outputs": [
+				{
+					"internalType": "bytes1",
+					"name": "",
+					"type": "bytes1"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "DATA_AUTHENTICATED_FLAG",
+			"outputs": [
+				{
+					"internalType": "bytes1",
+					"name": "",
+					"type": "bytes1"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "DATA_BLOB_HEADER_FLAG",
+			"outputs": [
+				{
+					"internalType": "bytes1",
+					"name": "",
+					"type": "bytes1"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "HEADER_LENGTH",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "TREE_DAS_MESSAGE_HEADER_FLAG",
+			"outputs": [
+				{
+					"internalType": "bytes1",
+					"name": "",
+					"type": "bytes1"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "ZERO_HEAVY_MESSAGE_HEADER_FLAG",
+			"outputs": [
+				{
+					"internalType": "bytes1",
+					"name": "",
+					"type": "bytes1"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "sequenceNumber",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				},
+				{
+					"internalType": "uint256",
+					"name": "afterDelayedMessagesRead",
+					"type": "uint256"
+				},
+				{
+					"internalType": "contract IGasRefunder",
+					"name": "gasRefunder",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "prevMessageCount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "newMessageCount",
+					"type": "uint256"
+				}
+			],
+			"name": "addSequencerL2Batch",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "sequenceNumber",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "afterDelayedMessagesRead",
+					"type": "uint256"
+				},
+				{
+					"internalType": "contract IGasRefunder",
+					"name": "gasRefunder",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "prevMessageCount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "newMessageCount",
+					"type": "uint256"
+				}
+			],
+			"name": "addSequencerL2BatchFromBlobs",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "sequenceNumber",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				},
+				{
+					"internalType": "uint256",
+					"name": "afterDelayedMessagesRead",
+					"type": "uint256"
+				},
+				{
+					"internalType": "contract IGasRefunder",
+					"name": "gasRefunder",
+					"type": "address"
+				}
+			],
+			"name": "addSequencerL2BatchFromOrigin",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "sequenceNumber",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bytes",
+					"name": "data",
+					"type": "bytes"
+				},
+				{
+					"internalType": "uint256",
+					"name": "afterDelayedMessagesRead",
+					"type": "uint256"
+				},
+				{
+					"internalType": "contract IGasRefunder",
+					"name": "gasRefunder",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "prevMessageCount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "newMessageCount",
+					"type": "uint256"
+				}
+			],
+			"name": "addSequencerL2BatchFromOrigin",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "batchCount",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "batchPosterManager",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "bridge",
+			"outputs": [
+				{
+					"internalType": "contract IBridge",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "",
+					"type": "bytes32"
+				}
+			],
+			"name": "dasKeySetInfo",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				},
+				{
+					"internalType": "uint64",
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_totalDelayedMessagesRead",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint8",
+					"name": "kind",
+					"type": "uint8"
+				},
+				{
+					"internalType": "uint64[2]",
+					"name": "l1BlockAndTime",
+					"type": "uint64[2]"
+				},
+				{
+					"internalType": "uint256",
+					"name": "baseFeeL1",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "sender",
+					"type": "address"
+				},
+				{
+					"internalType": "bytes32",
+					"name": "messageDataHash",
+					"type": "bytes32"
+				}
+			],
+			"name": "forceInclusion",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "ksHash",
+					"type": "bytes32"
+				}
+			],
+			"name": "getKeysetCreationBlock",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "index",
+					"type": "uint256"
+				}
+			],
+			"name": "inboxAccs",
+			"outputs": [
+				{
+					"internalType": "bytes32",
+					"name": "",
+					"type": "bytes32"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "contract IBridge",
+					"name": "bridge_",
+					"type": "address"
+				},
+				{
+					"components": [
+						{
+							"internalType": "uint256",
+							"name": "delayBlocks",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "futureBlocks",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "delaySeconds",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "futureSeconds",
+							"type": "uint256"
+						}
+					],
+					"internalType": "struct ISequencerInbox.MaxTimeVariation",
+					"name": "maxTimeVariation_",
+					"type": "tuple"
+				}
+			],
+			"name": "initialize",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "ksHash",
+					"type": "bytes32"
+				}
+			],
+			"name": "invalidateKeysetHash",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "isBatchPoster",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "isSequencer",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "ksHash",
+					"type": "bytes32"
+				}
+			],
+			"name": "isValidKeysetHash",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "maxDataSize",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "maxTimeVariation",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "delayBlocks",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "futureBlocks",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "delaySeconds",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "futureSeconds",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "removeDelayAfterFork",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "rollup",
+			"outputs": [
+				{
+					"internalType": "contract IOwnable",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "newBatchPosterManager",
+					"type": "address"
+				}
+			],
+			"name": "setBatchPosterManager",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "addr",
+					"type": "address"
+				},
+				{
+					"internalType": "bool",
+					"name": "isBatchPoster_",
+					"type": "bool"
+				}
+			],
+			"name": "setIsBatchPoster",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "addr",
+					"type": "address"
+				},
+				{
+					"internalType": "bool",
+					"name": "isSequencer_",
+					"type": "bool"
+				}
+			],
+			"name": "setIsSequencer",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"components": [
+						{
+							"internalType": "uint256",
+							"name": "delayBlocks",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "futureBlocks",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "delaySeconds",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "futureSeconds",
+							"type": "uint256"
+						}
+					],
+					"internalType": "struct ISequencerInbox.MaxTimeVariation",
+					"name": "maxTimeVariation_",
+					"type": "tuple"
+				}
+			],
+			"name": "setMaxTimeVariation",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes",
+					"name": "keysetBytes",
+					"type": "bytes"
+				}
+			],
+			"name": "setValidKeyset",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "totalDelayedMessagesRead",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "updateRollupAddress",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		}
+	]
+}

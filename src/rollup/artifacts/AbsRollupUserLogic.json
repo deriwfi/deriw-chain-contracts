@@ -1,0 +1,1727 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"VALIDATOR_AFK_BLOCKS()": "4ceccfe5",
+			"_stakerMap(address)": "e8bd4922",
+			"amountStaked(address)": "ef40a670",
+			"anyTrustFastConfirmer()": "55840a58",
+			"baseStake()": "76e7e23b",
+			"bridge()": "e78cea92",
+			"chainId()": "9a8a0592",
+			"challengeManager()": "023a96fe",
+			"completeChallenge(uint256,address,address)": "0357aa49",
+			"confirmNextNode(bytes32,bytes32)": "5eb405d5",
+			"confirmPeriodBlocks()": "2e7acfa6",
+			"countStakedZombies(uint64)": "5c617e94",
+			"countZombiesStakedOnChildren(uint64)": "6d08d0a2",
+			"createChallenge(address[2],uint64[2],uint8[2],(bytes32[2],uint64[2])[2],uint64,bytes32,uint256[2],bytes32[2])": "6f57644e",
+			"currentChallenge(address)": "69fd251c",
+			"currentRequiredStake()": "4d26732d",
+			"extraChallengeTimeBlocks()": "771b2f97",
+			"fastConfirmNextNode(bytes32,bytes32,bytes32)": "3ed57598",
+			"firstUnresolvedNode()": "d735e21d",
+			"getNode(uint64)": "92c8134c",
+			"getNodeCreationBlockForLogLookup(uint64)": "f63a434a",
+			"getStaker(address)": "a23c44b1",
+			"getStakerAddress(uint64)": "6ddd3744",
+			"inbox()": "fb0e722b",
+			"initialize(address)": "c4d66de8",
+			"isERC20Enabled()": "cd205fda",
+			"isStaked(address)": "6177fd18",
+			"isStakedOnLatestConfirmed(address)": "dcd030aa",
+			"isValidator(address)": "facd743b",
+			"isZombie(address)": "91c657e8",
+			"lastStakeBlock()": "8640ce5f",
+			"latestConfirmed()": "65f7f80d",
+			"latestNodeCreated()": "7ba9534a",
+			"latestStakedNode(address)": "3e96576e",
+			"loserStakeEscrow()": "f065de3f",
+			"minimumAssertionPeriod()": "45e38b64",
+			"nodeHasStaker(uint64,address)": "aa65af48",
+			"outbox()": "ce11e6ab",
+			"owner()": "8da5cb5b",
+			"paused()": "5c975abb",
+			"proxiableUUID()": "52d1902d",
+			"reduceDeposit(uint256)": "1e83d30f",
+			"rejectNextNode(address)": "6b94c33b",
+			"removeOldZombies(uint256)": "edfd03ed",
+			"removeWhitelistAfterFork()": "c2c2e68e",
+			"removeWhitelistAfterValidatorAfk()": "18baaab9",
+			"removeZombie(uint256,uint256)": "7e2d2155",
+			"requireUnresolved(uint256)": "2b2af0ab",
+			"requireUnresolvedExists()": "67425daf",
+			"requiredStake(uint256,uint64,uint64)": "b0ebedc7",
+			"returnOldDeposit(address)": "7427be51",
+			"rollupDeploymentBlock()": "1b1689e9",
+			"rollupEventInbox()": "aa38a6e7",
+			"sequencerInbox()": "ee35f327",
+			"stakeOnExistingNode(uint64,bytes32)": "1aeb55a0",
+			"stakeOnNewNode((((bytes32[2],uint64[2]),uint8),((bytes32[2],uint64[2]),uint8),uint64),bytes32,uint256)": "54ce8961",
+			"stakeToken()": "51ed6a30",
+			"stakerCount()": "dff69787",
+			"totalWithdrawableFunds()": "71ef232c",
+			"validatorUtils()": "014cc92c",
+			"validatorWalletCreator()": "bc45e0ae",
+			"validatorWhitelistDisabled()": "12ab3d3b",
+			"wasmModuleRoot()": "8ee1a126",
+			"withdrawStakerFunds()": "61373919",
+			"withdrawableFunds(address)": "2f30cabd",
+			"zombieAddress(uint256)": "d01e6602",
+			"zombieCount()": "63721d6b",
+			"zombieLatestStakedNode(uint256)": "f33e1fac"
+		}
+	},
+	"abi": [
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "address",
+					"name": "previousAdmin",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "address",
+					"name": "newAdmin",
+					"type": "address"
+				}
+			],
+			"name": "AdminChanged",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "beacon",
+					"type": "address"
+				}
+			],
+			"name": "BeaconUpgraded",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "uint64",
+					"name": "nodeNum",
+					"type": "uint64"
+				},
+				{
+					"indexed": false,
+					"internalType": "bytes32",
+					"name": "blockHash",
+					"type": "bytes32"
+				},
+				{
+					"indexed": false,
+					"internalType": "bytes32",
+					"name": "sendRoot",
+					"type": "bytes32"
+				}
+			],
+			"name": "NodeConfirmed",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "uint64",
+					"name": "nodeNum",
+					"type": "uint64"
+				},
+				{
+					"indexed": true,
+					"internalType": "bytes32",
+					"name": "parentNodeHash",
+					"type": "bytes32"
+				},
+				{
+					"indexed": true,
+					"internalType": "bytes32",
+					"name": "nodeHash",
+					"type": "bytes32"
+				},
+				{
+					"indexed": false,
+					"internalType": "bytes32",
+					"name": "executionHash",
+					"type": "bytes32"
+				},
+				{
+					"components": [
+						{
+							"components": [
+								{
+									"components": [
+										{
+											"internalType": "bytes32[2]",
+											"name": "bytes32Vals",
+											"type": "bytes32[2]"
+										},
+										{
+											"internalType": "uint64[2]",
+											"name": "u64Vals",
+											"type": "uint64[2]"
+										}
+									],
+									"internalType": "struct GlobalState",
+									"name": "globalState",
+									"type": "tuple"
+								},
+								{
+									"internalType": "enum MachineStatus",
+									"name": "machineStatus",
+									"type": "uint8"
+								}
+							],
+							"internalType": "struct ExecutionState",
+							"name": "beforeState",
+							"type": "tuple"
+						},
+						{
+							"components": [
+								{
+									"components": [
+										{
+											"internalType": "bytes32[2]",
+											"name": "bytes32Vals",
+											"type": "bytes32[2]"
+										},
+										{
+											"internalType": "uint64[2]",
+											"name": "u64Vals",
+											"type": "uint64[2]"
+										}
+									],
+									"internalType": "struct GlobalState",
+									"name": "globalState",
+									"type": "tuple"
+								},
+								{
+									"internalType": "enum MachineStatus",
+									"name": "machineStatus",
+									"type": "uint8"
+								}
+							],
+							"internalType": "struct ExecutionState",
+							"name": "afterState",
+							"type": "tuple"
+						},
+						{
+							"internalType": "uint64",
+							"name": "numBlocks",
+							"type": "uint64"
+						}
+					],
+					"indexed": false,
+					"internalType": "struct Assertion",
+					"name": "assertion",
+					"type": "tuple"
+				},
+				{
+					"indexed": false,
+					"internalType": "bytes32",
+					"name": "afterInboxBatchAcc",
+					"type": "bytes32"
+				},
+				{
+					"indexed": false,
+					"internalType": "bytes32",
+					"name": "wasmModuleRoot",
+					"type": "bytes32"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "inboxMaxCount",
+					"type": "uint256"
+				}
+			],
+			"name": "NodeCreated",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "uint64",
+					"name": "nodeNum",
+					"type": "uint64"
+				}
+			],
+			"name": "NodeRejected",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "address",
+					"name": "account",
+					"type": "address"
+				}
+			],
+			"name": "Paused",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "uint64",
+					"name": "challengeIndex",
+					"type": "uint64"
+				},
+				{
+					"indexed": false,
+					"internalType": "address",
+					"name": "asserter",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "address",
+					"name": "challenger",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint64",
+					"name": "challengedNode",
+					"type": "uint64"
+				}
+			],
+			"name": "RollupChallengeStarted",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "bytes32",
+					"name": "machineHash",
+					"type": "bytes32"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "chainId",
+					"type": "uint256"
+				}
+			],
+			"name": "RollupInitialized",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "address",
+					"name": "account",
+					"type": "address"
+				}
+			],
+			"name": "Unpaused",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "implementation",
+					"type": "address"
+				}
+			],
+			"name": "Upgraded",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "implementation",
+					"type": "address"
+				}
+			],
+			"name": "UpgradedSecondary",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "user",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "initialBalance",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "finalBalance",
+					"type": "uint256"
+				}
+			],
+			"name": "UserStakeUpdated",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "user",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "initialBalance",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "finalBalance",
+					"type": "uint256"
+				}
+			],
+			"name": "UserWithdrawableFundsUpdated",
+			"type": "event"
+		},
+		{
+			"inputs": [],
+			"name": "VALIDATOR_AFK_BLOCKS",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "_stakerMap",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "amountStaked",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint64",
+					"name": "index",
+					"type": "uint64"
+				},
+				{
+					"internalType": "uint64",
+					"name": "latestStakedNode",
+					"type": "uint64"
+				},
+				{
+					"internalType": "uint64",
+					"name": "currentChallenge",
+					"type": "uint64"
+				},
+				{
+					"internalType": "bool",
+					"name": "isStaked",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "staker",
+					"type": "address"
+				}
+			],
+			"name": "amountStaked",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "anyTrustFastConfirmer",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "baseStake",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "bridge",
+			"outputs": [
+				{
+					"internalType": "contract IBridge",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "chainId",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "challengeManager",
+			"outputs": [
+				{
+					"internalType": "contract IChallengeManager",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "challengeIndex",
+					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "winningStaker",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "losingStaker",
+					"type": "address"
+				}
+			],
+			"name": "completeChallenge",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "blockHash",
+					"type": "bytes32"
+				},
+				{
+					"internalType": "bytes32",
+					"name": "sendRoot",
+					"type": "bytes32"
+				}
+			],
+			"name": "confirmNextNode",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "confirmPeriodBlocks",
+			"outputs": [
+				{
+					"internalType": "uint64",
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "nodeNum",
+					"type": "uint64"
+				}
+			],
+			"name": "countStakedZombies",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "nodeNum",
+					"type": "uint64"
+				}
+			],
+			"name": "countZombiesStakedOnChildren",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address[2]",
+					"name": "stakers",
+					"type": "address[2]"
+				},
+				{
+					"internalType": "uint64[2]",
+					"name": "nodeNums",
+					"type": "uint64[2]"
+				},
+				{
+					"internalType": "enum MachineStatus[2]",
+					"name": "machineStatuses",
+					"type": "uint8[2]"
+				},
+				{
+					"components": [
+						{
+							"internalType": "bytes32[2]",
+							"name": "bytes32Vals",
+							"type": "bytes32[2]"
+						},
+						{
+							"internalType": "uint64[2]",
+							"name": "u64Vals",
+							"type": "uint64[2]"
+						}
+					],
+					"internalType": "struct GlobalState[2]",
+					"name": "globalStates",
+					"type": "tuple[2]"
+				},
+				{
+					"internalType": "uint64",
+					"name": "numBlocks",
+					"type": "uint64"
+				},
+				{
+					"internalType": "bytes32",
+					"name": "secondExecutionHash",
+					"type": "bytes32"
+				},
+				{
+					"internalType": "uint256[2]",
+					"name": "proposedBlocks",
+					"type": "uint256[2]"
+				},
+				{
+					"internalType": "bytes32[2]",
+					"name": "wasmModuleRoots",
+					"type": "bytes32[2]"
+				}
+			],
+			"name": "createChallenge",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "staker",
+					"type": "address"
+				}
+			],
+			"name": "currentChallenge",
+			"outputs": [
+				{
+					"internalType": "uint64",
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "currentRequiredStake",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "extraChallengeTimeBlocks",
+			"outputs": [
+				{
+					"internalType": "uint64",
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "blockHash",
+					"type": "bytes32"
+				},
+				{
+					"internalType": "bytes32",
+					"name": "sendRoot",
+					"type": "bytes32"
+				},
+				{
+					"internalType": "bytes32",
+					"name": "nodeHash",
+					"type": "bytes32"
+				}
+			],
+			"name": "fastConfirmNextNode",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "firstUnresolvedNode",
+			"outputs": [
+				{
+					"internalType": "uint64",
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "nodeNum",
+					"type": "uint64"
+				}
+			],
+			"name": "getNode",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "bytes32",
+							"name": "stateHash",
+							"type": "bytes32"
+						},
+						{
+							"internalType": "bytes32",
+							"name": "challengeHash",
+							"type": "bytes32"
+						},
+						{
+							"internalType": "bytes32",
+							"name": "confirmData",
+							"type": "bytes32"
+						},
+						{
+							"internalType": "uint64",
+							"name": "prevNum",
+							"type": "uint64"
+						},
+						{
+							"internalType": "uint64",
+							"name": "deadlineBlock",
+							"type": "uint64"
+						},
+						{
+							"internalType": "uint64",
+							"name": "noChildConfirmedBeforeBlock",
+							"type": "uint64"
+						},
+						{
+							"internalType": "uint64",
+							"name": "stakerCount",
+							"type": "uint64"
+						},
+						{
+							"internalType": "uint64",
+							"name": "childStakerCount",
+							"type": "uint64"
+						},
+						{
+							"internalType": "uint64",
+							"name": "firstChildBlock",
+							"type": "uint64"
+						},
+						{
+							"internalType": "uint64",
+							"name": "latestChildNumber",
+							"type": "uint64"
+						},
+						{
+							"internalType": "uint64",
+							"name": "createdAtBlock",
+							"type": "uint64"
+						},
+						{
+							"internalType": "bytes32",
+							"name": "nodeHash",
+							"type": "bytes32"
+						}
+					],
+					"internalType": "struct Node",
+					"name": "",
+					"type": "tuple"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "nodeNum",
+					"type": "uint64"
+				}
+			],
+			"name": "getNodeCreationBlockForLogLookup",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "staker",
+					"type": "address"
+				}
+			],
+			"name": "getStaker",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "uint256",
+							"name": "amountStaked",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint64",
+							"name": "index",
+							"type": "uint64"
+						},
+						{
+							"internalType": "uint64",
+							"name": "latestStakedNode",
+							"type": "uint64"
+						},
+						{
+							"internalType": "uint64",
+							"name": "currentChallenge",
+							"type": "uint64"
+						},
+						{
+							"internalType": "bool",
+							"name": "isStaked",
+							"type": "bool"
+						}
+					],
+					"internalType": "struct IRollupCore.Staker",
+					"name": "",
+					"type": "tuple"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "stakerNum",
+					"type": "uint64"
+				}
+			],
+			"name": "getStakerAddress",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "inbox",
+			"outputs": [
+				{
+					"internalType": "contract IInboxBase",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "stakeToken",
+					"type": "address"
+				}
+			],
+			"name": "initialize",
+			"outputs": [],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "isERC20Enabled",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "staker",
+					"type": "address"
+				}
+			],
+			"name": "isStaked",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "staker",
+					"type": "address"
+				}
+			],
+			"name": "isStakedOnLatestConfirmed",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"name": "isValidator",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "staker",
+					"type": "address"
+				}
+			],
+			"name": "isZombie",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "lastStakeBlock",
+			"outputs": [
+				{
+					"internalType": "uint64",
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "latestConfirmed",
+			"outputs": [
+				{
+					"internalType": "uint64",
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "latestNodeCreated",
+			"outputs": [
+				{
+					"internalType": "uint64",
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "staker",
+					"type": "address"
+				}
+			],
+			"name": "latestStakedNode",
+			"outputs": [
+				{
+					"internalType": "uint64",
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "loserStakeEscrow",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "minimumAssertionPeriod",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "nodeNum",
+					"type": "uint64"
+				},
+				{
+					"internalType": "address",
+					"name": "staker",
+					"type": "address"
+				}
+			],
+			"name": "nodeHasStaker",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "outbox",
+			"outputs": [
+				{
+					"internalType": "contract IOutbox",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "owner",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "paused",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "proxiableUUID",
+			"outputs": [
+				{
+					"internalType": "bytes32",
+					"name": "",
+					"type": "bytes32"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "target",
+					"type": "uint256"
+				}
+			],
+			"name": "reduceDeposit",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "stakerAddress",
+					"type": "address"
+				}
+			],
+			"name": "rejectNextNode",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "startIndex",
+					"type": "uint256"
+				}
+			],
+			"name": "removeOldZombies",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "removeWhitelistAfterFork",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "removeWhitelistAfterValidatorAfk",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "zombieNum",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "maxNodes",
+					"type": "uint256"
+				}
+			],
+			"name": "removeZombie",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "nodeNum",
+					"type": "uint256"
+				}
+			],
+			"name": "requireUnresolved",
+			"outputs": [],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "requireUnresolvedExists",
+			"outputs": [],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "blockNumber",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint64",
+					"name": "firstUnresolvedNodeNum",
+					"type": "uint64"
+				},
+				{
+					"internalType": "uint64",
+					"name": "latestCreatedNode",
+					"type": "uint64"
+				}
+			],
+			"name": "requiredStake",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "stakerAddress",
+					"type": "address"
+				}
+			],
+			"name": "returnOldDeposit",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "rollupDeploymentBlock",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "rollupEventInbox",
+			"outputs": [
+				{
+					"internalType": "contract IRollupEventInbox",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "sequencerInbox",
+			"outputs": [
+				{
+					"internalType": "contract ISequencerInbox",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint64",
+					"name": "nodeNum",
+					"type": "uint64"
+				},
+				{
+					"internalType": "bytes32",
+					"name": "nodeHash",
+					"type": "bytes32"
+				}
+			],
+			"name": "stakeOnExistingNode",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"components": [
+						{
+							"components": [
+								{
+									"components": [
+										{
+											"internalType": "bytes32[2]",
+											"name": "bytes32Vals",
+											"type": "bytes32[2]"
+										},
+										{
+											"internalType": "uint64[2]",
+											"name": "u64Vals",
+											"type": "uint64[2]"
+										}
+									],
+									"internalType": "struct GlobalState",
+									"name": "globalState",
+									"type": "tuple"
+								},
+								{
+									"internalType": "enum MachineStatus",
+									"name": "machineStatus",
+									"type": "uint8"
+								}
+							],
+							"internalType": "struct ExecutionState",
+							"name": "beforeState",
+							"type": "tuple"
+						},
+						{
+							"components": [
+								{
+									"components": [
+										{
+											"internalType": "bytes32[2]",
+											"name": "bytes32Vals",
+											"type": "bytes32[2]"
+										},
+										{
+											"internalType": "uint64[2]",
+											"name": "u64Vals",
+											"type": "uint64[2]"
+										}
+									],
+									"internalType": "struct GlobalState",
+									"name": "globalState",
+									"type": "tuple"
+								},
+								{
+									"internalType": "enum MachineStatus",
+									"name": "machineStatus",
+									"type": "uint8"
+								}
+							],
+							"internalType": "struct ExecutionState",
+							"name": "afterState",
+							"type": "tuple"
+						},
+						{
+							"internalType": "uint64",
+							"name": "numBlocks",
+							"type": "uint64"
+						}
+					],
+					"internalType": "struct Assertion",
+					"name": "assertion",
+					"type": "tuple"
+				},
+				{
+					"internalType": "bytes32",
+					"name": "expectedNodeHash",
+					"type": "bytes32"
+				},
+				{
+					"internalType": "uint256",
+					"name": "prevNodeInboxMaxCount",
+					"type": "uint256"
+				}
+			],
+			"name": "stakeOnNewNode",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "stakeToken",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "stakerCount",
+			"outputs": [
+				{
+					"internalType": "uint64",
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "totalWithdrawableFunds",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "validatorUtils",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "validatorWalletCreator",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "validatorWhitelistDisabled",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "wasmModuleRoot",
+			"outputs": [
+				{
+					"internalType": "bytes32",
+					"name": "",
+					"type": "bytes32"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "withdrawStakerFunds",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "user",
+					"type": "address"
+				}
+			],
+			"name": "withdrawableFunds",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "zombieNum",
+					"type": "uint256"
+				}
+			],
+			"name": "zombieAddress",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "zombieCount",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "zombieNum",
+					"type": "uint256"
+				}
+			],
+			"name": "zombieLatestStakedNode",
+			"outputs": [
+				{
+					"internalType": "uint64",
+					"name": "",
+					"type": "uint64"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		}
+	]
+}

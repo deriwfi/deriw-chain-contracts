@@ -1,0 +1,1537 @@
+{
+	"id": "eaa3f3ee6ac7a99b4f50a4b1cd4af7c3",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.16",
+	"solcLongVersion": "0.8.16+commit.07a7930e",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"src/precompiles/DeriwSubAccount.sol": {
+				"content": "// Copyright 2021-2022, Offchain Labs, Inc.\n// For license information, see https://github.com/OffchainLabs/nitro-contracts/blob/main/LICENSE\n// SPDX-License-Identifier: BUSL-1.1\n\npragma solidity >=0.4.21 <0.9.0;\n\n/// @title Provides user to grant permission to sub-account, allowed sub-account able to send transaction on their behave.\n/// Precompiled contract that exists in Deriw chain at 0x00000000000000000000000000000000000007EA.\ninterface DeriwSubAccount {\n    /// @notice Add sub-account owner\n    function addSubAccountOwner(address newOwner) external;\n\n    /// @notice Remove sub-account owner\n    function removeSubAccountOwner(address ownerToRemove) external;\n\n    /// @notice See if the user is a sub-account owner\n    function isSubAccountOwner(address addr) external view returns (bool);\n\n    /// @notice Add smart contract address that allow sub-account to interact with\n    function addAllowedAddress(address newAddress) external;\n\n    /// @notice Remove smart contract address that allow sub-account to interact with\n    function removeAllowedAddress(address addressToRemove) external;\n\n    /// @notice Check is the address allowed for sub-account interaction\n    function isAllowedAddress(address addr) external view returns (bool);\n\n    /// @notice Retrieves the list smart contract address, that allow sub-account to interact with\n    function getAllAllowedAddress() external view returns (address[] memory);\n\n    /// @notice Retrieves the list of sub-account owner\n    function getAllSubAccountOwner() external view returns (address[] memory);\n    \n    /// @notice Set usdt address, so that only approve method are allow for sub-account interact with\n    function addUsdtAddress(address newAddress) external;\n\n    /// @notice Remove smart contract address that allow sub-account to interact with\n    function removeUsdtAddress(address addressToRemove) external;\n\n    /// @notice Retrieve usdt address\n    function isUsdtAddress(address addr) external view returns (bool);\n\n    /// @notice Retrieves the list smart contract address, that allow for usdt sub-account to interact with\n    function getAllUsdtAddress() external view returns (address[] memory);\n\n    /// @notice reset all child parent relationship\n    function resetAllRelationship() external;\n\n    function resetAllRelationshipByIndex(uint64 size) external;\n\n    function resetAllRelationshipByPosition(address addr) external;\n\n\n    // Emitted when a successful call is made to this precompile\n    event OwnerActs(bytes4 indexed method, address indexed owner, bytes data);\n}\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"src/precompiles/DeriwSubAccount.sol": {
+				"DeriwSubAccount": {
+					"abi": [
+						{
+							"anonymous": false,
+							"inputs": [
+								{
+									"indexed": true,
+									"internalType": "bytes4",
+									"name": "method",
+									"type": "bytes4"
+								},
+								{
+									"indexed": true,
+									"internalType": "address",
+									"name": "owner",
+									"type": "address"
+								},
+								{
+									"indexed": false,
+									"internalType": "bytes",
+									"name": "data",
+									"type": "bytes"
+								}
+							],
+							"name": "OwnerActs",
+							"type": "event"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "newAddress",
+									"type": "address"
+								}
+							],
+							"name": "addAllowedAddress",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "newOwner",
+									"type": "address"
+								}
+							],
+							"name": "addSubAccountOwner",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "newAddress",
+									"type": "address"
+								}
+							],
+							"name": "addUsdtAddress",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getAllAllowedAddress",
+							"outputs": [
+								{
+									"internalType": "address[]",
+									"name": "",
+									"type": "address[]"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getAllSubAccountOwner",
+							"outputs": [
+								{
+									"internalType": "address[]",
+									"name": "",
+									"type": "address[]"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "getAllUsdtAddress",
+							"outputs": [
+								{
+									"internalType": "address[]",
+									"name": "",
+									"type": "address[]"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "addr",
+									"type": "address"
+								}
+							],
+							"name": "isAllowedAddress",
+							"outputs": [
+								{
+									"internalType": "bool",
+									"name": "",
+									"type": "bool"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "addr",
+									"type": "address"
+								}
+							],
+							"name": "isSubAccountOwner",
+							"outputs": [
+								{
+									"internalType": "bool",
+									"name": "",
+									"type": "bool"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "addr",
+									"type": "address"
+								}
+							],
+							"name": "isUsdtAddress",
+							"outputs": [
+								{
+									"internalType": "bool",
+									"name": "",
+									"type": "bool"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "addressToRemove",
+									"type": "address"
+								}
+							],
+							"name": "removeAllowedAddress",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "ownerToRemove",
+									"type": "address"
+								}
+							],
+							"name": "removeSubAccountOwner",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "addressToRemove",
+									"type": "address"
+								}
+							],
+							"name": "removeUsdtAddress",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "resetAllRelationship",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "uint64",
+									"name": "size",
+									"type": "uint64"
+								}
+							],
+							"name": "resetAllRelationshipByIndex",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "addr",
+									"type": "address"
+								}
+							],
+							"name": "resetAllRelationshipByPosition",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"kind": "dev",
+						"methods": {},
+						"title": "Provides user to grant permission to sub-account, allowed sub-account able to send transaction on their behave. Precompiled contract that exists in Deriw chain at 0x00000000000000000000000000000000000007EA.",
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"addAllowedAddress(address)": "81788e2b",
+							"addSubAccountOwner(address)": "2042004f",
+							"addUsdtAddress(address)": "d942da79",
+							"getAllAllowedAddress()": "338c6fe3",
+							"getAllSubAccountOwner()": "547f366f",
+							"getAllUsdtAddress()": "dea8b51d",
+							"isAllowedAddress(address)": "8345245e",
+							"isSubAccountOwner(address)": "cf954814",
+							"isUsdtAddress(address)": "bfea1c9b",
+							"removeAllowedAddress(address)": "3c9d93b8",
+							"removeSubAccountOwner(address)": "928bbcbb",
+							"removeUsdtAddress(address)": "84fac37b",
+							"resetAllRelationship()": "8dfb1182",
+							"resetAllRelationshipByIndex(uint64)": "79be8161",
+							"resetAllRelationshipByPosition(address)": "9ca44c71"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.16+commit.07a7930e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes4\",\"name\":\"method\",\"type\":\"bytes4\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"OwnerActs\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAddress\",\"type\":\"address\"}],\"name\":\"addAllowedAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"addSubAccountOwner\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAddress\",\"type\":\"address\"}],\"name\":\"addUsdtAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAllAllowedAddress\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAllSubAccountOwner\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAllUsdtAddress\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"isAllowedAddress\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"isSubAccountOwner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"isUsdtAddress\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addressToRemove\",\"type\":\"address\"}],\"name\":\"removeAllowedAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"ownerToRemove\",\"type\":\"address\"}],\"name\":\"removeSubAccountOwner\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addressToRemove\",\"type\":\"address\"}],\"name\":\"removeUsdtAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"resetAllRelationship\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"size\",\"type\":\"uint64\"}],\"name\":\"resetAllRelationshipByIndex\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"resetAllRelationshipByPosition\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"title\":\"Provides user to grant permission to sub-account, allowed sub-account able to send transaction on their behave. Precompiled contract that exists in Deriw chain at 0x00000000000000000000000000000000000007EA.\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"addAllowedAddress(address)\":{\"notice\":\"Add smart contract address that allow sub-account to interact with\"},\"addSubAccountOwner(address)\":{\"notice\":\"Add sub-account owner\"},\"addUsdtAddress(address)\":{\"notice\":\"Set usdt address, so that only approve method are allow for sub-account interact with\"},\"getAllAllowedAddress()\":{\"notice\":\"Retrieves the list smart contract address, that allow sub-account to interact with\"},\"getAllSubAccountOwner()\":{\"notice\":\"Retrieves the list of sub-account owner\"},\"getAllUsdtAddress()\":{\"notice\":\"Retrieves the list smart contract address, that allow for usdt sub-account to interact with\"},\"isAllowedAddress(address)\":{\"notice\":\"Check is the address allowed for sub-account interaction\"},\"isSubAccountOwner(address)\":{\"notice\":\"See if the user is a sub-account owner\"},\"isUsdtAddress(address)\":{\"notice\":\"Retrieve usdt address\"},\"removeAllowedAddress(address)\":{\"notice\":\"Remove smart contract address that allow sub-account to interact with\"},\"removeSubAccountOwner(address)\":{\"notice\":\"Remove sub-account owner\"},\"removeUsdtAddress(address)\":{\"notice\":\"Remove smart contract address that allow sub-account to interact with\"},\"resetAllRelationship()\":{\"notice\":\"reset all child parent relationship\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/precompiles/DeriwSubAccount.sol\":\"DeriwSubAccount\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"src/precompiles/DeriwSubAccount.sol\":{\"keccak256\":\"0x8b03a856fa61d4fb8ee5f4e4f9f235316231858d40b1c6834f973be2f2e95c21\",\"license\":\"BUSL-1.1\",\"urls\":[\"bzz-raw://814cf7bab60024e39b7724c6dc316a937f98abcd60319909e297e3e325c6b7b9\",\"dweb:/ipfs/Qmb9pbRMFcDnzVvGEzEKr4yBAikohbekJYXq6RFamJVjbw\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {
+							"addAllowedAddress(address)": {
+								"notice": "Add smart contract address that allow sub-account to interact with"
+							},
+							"addSubAccountOwner(address)": {
+								"notice": "Add sub-account owner"
+							},
+							"addUsdtAddress(address)": {
+								"notice": "Set usdt address, so that only approve method are allow for sub-account interact with"
+							},
+							"getAllAllowedAddress()": {
+								"notice": "Retrieves the list smart contract address, that allow sub-account to interact with"
+							},
+							"getAllSubAccountOwner()": {
+								"notice": "Retrieves the list of sub-account owner"
+							},
+							"getAllUsdtAddress()": {
+								"notice": "Retrieves the list smart contract address, that allow for usdt sub-account to interact with"
+							},
+							"isAllowedAddress(address)": {
+								"notice": "Check is the address allowed for sub-account interaction"
+							},
+							"isSubAccountOwner(address)": {
+								"notice": "See if the user is a sub-account owner"
+							},
+							"isUsdtAddress(address)": {
+								"notice": "Retrieve usdt address"
+							},
+							"removeAllowedAddress(address)": {
+								"notice": "Remove smart contract address that allow sub-account to interact with"
+							},
+							"removeSubAccountOwner(address)": {
+								"notice": "Remove sub-account owner"
+							},
+							"removeUsdtAddress(address)": {
+								"notice": "Remove smart contract address that allow sub-account to interact with"
+							},
+							"resetAllRelationship()": {
+								"notice": "reset all child parent relationship"
+							}
+						},
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"src/precompiles/DeriwSubAccount.sol": {
+				"ast": {
+					"absolutePath": "src/precompiles/DeriwSubAccount.sol",
+					"exportedSymbols": {
+						"DeriwSubAccount": [
+							106
+						]
+					},
+					"id": 107,
+					"license": "BUSL-1.1",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								">=",
+								"0.4",
+								".21",
+								"<",
+								"0.9",
+								".0"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "180:32:0"
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "DeriwSubAccount",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"documentation": {
+								"id": 2,
+								"nodeType": "StructuredDocumentation",
+								"src": "214:222:0",
+								"text": "@title Provides user to grant permission to sub-account, allowed sub-account able to send transaction on their behave.\n Precompiled contract that exists in Deriw chain at 0x00000000000000000000000000000000000007EA."
+							},
+							"fullyImplemented": false,
+							"id": 106,
+							"linearizedBaseContracts": [
+								106
+							],
+							"name": "DeriwSubAccount",
+							"nameLocation": "446:15:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"documentation": {
+										"id": 3,
+										"nodeType": "StructuredDocumentation",
+										"src": "468:33:0",
+										"text": "@notice Add sub-account owner"
+									},
+									"functionSelector": "2042004f",
+									"id": 8,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "addSubAccountOwner",
+									"nameLocation": "515:18:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 6,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 5,
+												"mutability": "mutable",
+												"name": "newOwner",
+												"nameLocation": "542:8:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 8,
+												"src": "534:16:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 4,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "534:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "533:18:0"
+									},
+									"returnParameters": {
+										"id": 7,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "560:0:0"
+									},
+									"scope": 106,
+									"src": "506:55:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 9,
+										"nodeType": "StructuredDocumentation",
+										"src": "567:36:0",
+										"text": "@notice Remove sub-account owner"
+									},
+									"functionSelector": "928bbcbb",
+									"id": 14,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "removeSubAccountOwner",
+									"nameLocation": "617:21:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 12,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 11,
+												"mutability": "mutable",
+												"name": "ownerToRemove",
+												"nameLocation": "647:13:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 14,
+												"src": "639:21:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 10,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "639:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "638:23:0"
+									},
+									"returnParameters": {
+										"id": 13,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "670:0:0"
+									},
+									"scope": 106,
+									"src": "608:63:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 15,
+										"nodeType": "StructuredDocumentation",
+										"src": "677:50:0",
+										"text": "@notice See if the user is a sub-account owner"
+									},
+									"functionSelector": "cf954814",
+									"id": 22,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "isSubAccountOwner",
+									"nameLocation": "741:17:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 18,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 17,
+												"mutability": "mutable",
+												"name": "addr",
+												"nameLocation": "767:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 22,
+												"src": "759:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 16,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "759:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "758:14:0"
+									},
+									"returnParameters": {
+										"id": 21,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 20,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 22,
+												"src": "796:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 19,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "796:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "795:6:0"
+									},
+									"scope": 106,
+									"src": "732:70:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 23,
+										"nodeType": "StructuredDocumentation",
+										"src": "808:78:0",
+										"text": "@notice Add smart contract address that allow sub-account to interact with"
+									},
+									"functionSelector": "81788e2b",
+									"id": 28,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "addAllowedAddress",
+									"nameLocation": "900:17:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 26,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 25,
+												"mutability": "mutable",
+												"name": "newAddress",
+												"nameLocation": "926:10:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 28,
+												"src": "918:18:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 24,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "918:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "917:20:0"
+									},
+									"returnParameters": {
+										"id": 27,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "946:0:0"
+									},
+									"scope": 106,
+									"src": "891:56:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 29,
+										"nodeType": "StructuredDocumentation",
+										"src": "953:81:0",
+										"text": "@notice Remove smart contract address that allow sub-account to interact with"
+									},
+									"functionSelector": "3c9d93b8",
+									"id": 34,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "removeAllowedAddress",
+									"nameLocation": "1048:20:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 32,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 31,
+												"mutability": "mutable",
+												"name": "addressToRemove",
+												"nameLocation": "1077:15:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 34,
+												"src": "1069:23:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 30,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1069:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1068:25:0"
+									},
+									"returnParameters": {
+										"id": 33,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1102:0:0"
+									},
+									"scope": 106,
+									"src": "1039:64:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 35,
+										"nodeType": "StructuredDocumentation",
+										"src": "1109:68:0",
+										"text": "@notice Check is the address allowed for sub-account interaction"
+									},
+									"functionSelector": "8345245e",
+									"id": 42,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "isAllowedAddress",
+									"nameLocation": "1191:16:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 38,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 37,
+												"mutability": "mutable",
+												"name": "addr",
+												"nameLocation": "1216:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 42,
+												"src": "1208:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 36,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1208:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1207:14:0"
+									},
+									"returnParameters": {
+										"id": 41,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 40,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 42,
+												"src": "1245:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 39,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "1245:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1244:6:0"
+									},
+									"scope": 106,
+									"src": "1182:69:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 43,
+										"nodeType": "StructuredDocumentation",
+										"src": "1257:94:0",
+										"text": "@notice Retrieves the list smart contract address, that allow sub-account to interact with"
+									},
+									"functionSelector": "338c6fe3",
+									"id": 49,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getAllAllowedAddress",
+									"nameLocation": "1365:20:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 44,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1385:2:0"
+									},
+									"returnParameters": {
+										"id": 48,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 47,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 49,
+												"src": "1411:16:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+													"typeString": "address[]"
+												},
+												"typeName": {
+													"baseType": {
+														"id": 45,
+														"name": "address",
+														"nodeType": "ElementaryTypeName",
+														"src": "1411:7:0",
+														"stateMutability": "nonpayable",
+														"typeDescriptions": {
+															"typeIdentifier": "t_address",
+															"typeString": "address"
+														}
+													},
+													"id": 46,
+													"nodeType": "ArrayTypeName",
+													"src": "1411:9:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+														"typeString": "address[]"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1410:18:0"
+									},
+									"scope": 106,
+									"src": "1356:73:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 50,
+										"nodeType": "StructuredDocumentation",
+										"src": "1435:51:0",
+										"text": "@notice Retrieves the list of sub-account owner"
+									},
+									"functionSelector": "547f366f",
+									"id": 56,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getAllSubAccountOwner",
+									"nameLocation": "1500:21:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 51,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1521:2:0"
+									},
+									"returnParameters": {
+										"id": 55,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 54,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 56,
+												"src": "1547:16:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+													"typeString": "address[]"
+												},
+												"typeName": {
+													"baseType": {
+														"id": 52,
+														"name": "address",
+														"nodeType": "ElementaryTypeName",
+														"src": "1547:7:0",
+														"stateMutability": "nonpayable",
+														"typeDescriptions": {
+															"typeIdentifier": "t_address",
+															"typeString": "address"
+														}
+													},
+													"id": 53,
+													"nodeType": "ArrayTypeName",
+													"src": "1547:9:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+														"typeString": "address[]"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1546:18:0"
+									},
+									"scope": 106,
+									"src": "1491:74:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 57,
+										"nodeType": "StructuredDocumentation",
+										"src": "1575:97:0",
+										"text": "@notice Set usdt address, so that only approve method are allow for sub-account interact with"
+									},
+									"functionSelector": "d942da79",
+									"id": 62,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "addUsdtAddress",
+									"nameLocation": "1686:14:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 60,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 59,
+												"mutability": "mutable",
+												"name": "newAddress",
+												"nameLocation": "1709:10:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 62,
+												"src": "1701:18:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 58,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1701:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1700:20:0"
+									},
+									"returnParameters": {
+										"id": 61,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1729:0:0"
+									},
+									"scope": 106,
+									"src": "1677:53:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 63,
+										"nodeType": "StructuredDocumentation",
+										"src": "1736:81:0",
+										"text": "@notice Remove smart contract address that allow sub-account to interact with"
+									},
+									"functionSelector": "84fac37b",
+									"id": 68,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "removeUsdtAddress",
+									"nameLocation": "1831:17:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 66,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 65,
+												"mutability": "mutable",
+												"name": "addressToRemove",
+												"nameLocation": "1857:15:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 68,
+												"src": "1849:23:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 64,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1849:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1848:25:0"
+									},
+									"returnParameters": {
+										"id": 67,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "1882:0:0"
+									},
+									"scope": 106,
+									"src": "1822:61:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 69,
+										"nodeType": "StructuredDocumentation",
+										"src": "1889:33:0",
+										"text": "@notice Retrieve usdt address"
+									},
+									"functionSelector": "bfea1c9b",
+									"id": 76,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "isUsdtAddress",
+									"nameLocation": "1936:13:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 72,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 71,
+												"mutability": "mutable",
+												"name": "addr",
+												"nameLocation": "1958:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 76,
+												"src": "1950:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 70,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1950:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1949:14:0"
+									},
+									"returnParameters": {
+										"id": 75,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 74,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 76,
+												"src": "1987:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 73,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "1987:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1986:6:0"
+									},
+									"scope": 106,
+									"src": "1927:66:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 77,
+										"nodeType": "StructuredDocumentation",
+										"src": "1999:103:0",
+										"text": "@notice Retrieves the list smart contract address, that allow for usdt sub-account to interact with"
+									},
+									"functionSelector": "dea8b51d",
+									"id": 83,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getAllUsdtAddress",
+									"nameLocation": "2116:17:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 78,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2133:2:0"
+									},
+									"returnParameters": {
+										"id": 82,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 81,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 83,
+												"src": "2159:16:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+													"typeString": "address[]"
+												},
+												"typeName": {
+													"baseType": {
+														"id": 79,
+														"name": "address",
+														"nodeType": "ElementaryTypeName",
+														"src": "2159:7:0",
+														"stateMutability": "nonpayable",
+														"typeDescriptions": {
+															"typeIdentifier": "t_address",
+															"typeString": "address"
+														}
+													},
+													"id": 80,
+													"nodeType": "ArrayTypeName",
+													"src": "2159:9:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+														"typeString": "address[]"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2158:18:0"
+									},
+									"scope": 106,
+									"src": "2107:70:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 84,
+										"nodeType": "StructuredDocumentation",
+										"src": "2183:47:0",
+										"text": "@notice reset all child parent relationship"
+									},
+									"functionSelector": "8dfb1182",
+									"id": 87,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "resetAllRelationship",
+									"nameLocation": "2244:20:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 85,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2264:2:0"
+									},
+									"returnParameters": {
+										"id": 86,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2275:0:0"
+									},
+									"scope": 106,
+									"src": "2235:41:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "79be8161",
+									"id": 92,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "resetAllRelationshipByIndex",
+									"nameLocation": "2291:27:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 90,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 89,
+												"mutability": "mutable",
+												"name": "size",
+												"nameLocation": "2326:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 92,
+												"src": "2319:11:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint64",
+													"typeString": "uint64"
+												},
+												"typeName": {
+													"id": 88,
+													"name": "uint64",
+													"nodeType": "ElementaryTypeName",
+													"src": "2319:6:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint64",
+														"typeString": "uint64"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2318:13:0"
+									},
+									"returnParameters": {
+										"id": 91,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2340:0:0"
+									},
+									"scope": 106,
+									"src": "2282:59:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "9ca44c71",
+									"id": 97,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "resetAllRelationshipByPosition",
+									"nameLocation": "2356:30:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 95,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 94,
+												"mutability": "mutable",
+												"name": "addr",
+												"nameLocation": "2395:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 97,
+												"src": "2387:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 93,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "2387:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2386:14:0"
+									},
+									"returnParameters": {
+										"id": 96,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "2409:0:0"
+									},
+									"scope": 106,
+									"src": "2347:63:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"anonymous": false,
+									"eventSelector": "3c9e6a772755407311e3b35b3ee56799df8f87395941b3a658eee9e08a67ebda",
+									"id": 105,
+									"name": "OwnerActs",
+									"nameLocation": "2488:9:0",
+									"nodeType": "EventDefinition",
+									"parameters": {
+										"id": 104,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 99,
+												"indexed": true,
+												"mutability": "mutable",
+												"name": "method",
+												"nameLocation": "2513:6:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 105,
+												"src": "2498:21:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes4",
+													"typeString": "bytes4"
+												},
+												"typeName": {
+													"id": 98,
+													"name": "bytes4",
+													"nodeType": "ElementaryTypeName",
+													"src": "2498:6:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes4",
+														"typeString": "bytes4"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 101,
+												"indexed": true,
+												"mutability": "mutable",
+												"name": "owner",
+												"nameLocation": "2537:5:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 105,
+												"src": "2521:21:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 100,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "2521:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 103,
+												"indexed": false,
+												"mutability": "mutable",
+												"name": "data",
+												"nameLocation": "2550:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 105,
+												"src": "2544:10:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes_memory_ptr",
+													"typeString": "bytes"
+												},
+												"typeName": {
+													"id": 102,
+													"name": "bytes",
+													"nodeType": "ElementaryTypeName",
+													"src": "2544:5:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes_storage_ptr",
+														"typeString": "bytes"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "2497:58:0"
+									},
+									"src": "2482:74:0"
+								}
+							],
+							"scope": 107,
+							"src": "436:2122:0",
+							"usedErrors": []
+						}
+					],
+					"src": "180:2379:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}
